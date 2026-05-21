@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { siteConfig } from "@/lib/site";
-import { jsonLd, serviceSchema } from "@/lib/seo";
+import { absoluteUrl, breadcrumbSchema, jsonLd, serviceSchema } from "@/lib/seo";
 
 const slug = "/servicii";
 
@@ -113,6 +113,17 @@ const services: Service[] = [
 export default function ServiciiPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLd(
+            breadcrumbSchema([
+              { name: "Acasă", url: absoluteUrl("/") },
+              { name: "Servicii", url: absoluteUrl(slug) },
+            ]),
+          ),
+        }}
+      />
       {services.map((s) => (
         <script
           key={s.id}
@@ -122,8 +133,8 @@ export default function ServiciiPage() {
               serviceSchema({
                 name: s.title,
                 description: s.paragraphs.map((p) => `${p.strong ?? ""}${p.text}`).join(" "),
-                url: `${siteConfig.url}${slug}#${s.id}`,
-                image: `${siteConfig.url}/images/cat-servicii.jpg`,
+                url: absoluteUrl(`${slug}#${s.id}`),
+                image: absoluteUrl("/images/cat-servicii.jpg"),
               }),
             ),
           }}

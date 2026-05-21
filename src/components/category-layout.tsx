@@ -2,10 +2,40 @@ import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "@/lib/site";
 import type { Category } from "@/lib/categories";
+import {
+  absoluteUrl,
+  breadcrumbSchema,
+  jsonLd,
+  serviceSchema,
+} from "@/lib/seo";
 
 export function CategoryLayout({ category }: { category: Category }) {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLd(
+            breadcrumbSchema([
+              { name: "Acasă", url: absoluteUrl("/") },
+              { name: category.title, url: absoluteUrl(category.href) },
+            ]),
+          ),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLd(
+            serviceSchema({
+              name: category.title,
+              description: category.lead,
+              url: absoluteUrl(category.href),
+              image: absoluteUrl(category.image),
+            }),
+          ),
+        }}
+      />
       <header className="relative pt-24 pb-20 px-6">
         <div className="max-w-7xl mx-auto grid grid-cols-12 gap-10 items-end">
           <div className="col-span-12 lg:col-span-6">

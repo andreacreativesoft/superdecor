@@ -1,5 +1,6 @@
 import type {
   BreadcrumbList,
+  ContactPage,
   FAQPage,
   LocalBusiness,
   Organization,
@@ -161,6 +162,23 @@ export function productSchema(input: {
         }
       : undefined,
   };
+}
+
+export function contactPageSchema(): WithContext<ContactPage> {
+  return {
+    "@context": CONTEXT,
+    "@type": "ContactPage",
+    "@id": `${siteConfig.url}/contact#contactpage`,
+    url: `${siteConfig.url}/contact`,
+    name: `Contact — ${siteConfig.name}`,
+    description:
+      "Showroom în Brașov, măsurători la domiciliu, ofertă în 24h.",
+    mainEntity: { "@id": `${siteConfig.url}#localbusiness` },
+  };
+}
+
+export function absoluteUrl(path: string): string {
+  return new URL(path, siteConfig.url).toString();
 }
 
 export function jsonLd<T>(data: T): string {

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { siteConfig } from "@/lib/site";
-import { faqSchema, jsonLd, serviceSchema } from "@/lib/seo";
+import { absoluteUrl, breadcrumbSchema, faqSchema, jsonLd, serviceSchema } from "@/lib/seo";
 
 const slug = "/jaluzele-rolete";
 
@@ -97,11 +97,22 @@ export default function JaluzeleRoletePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: jsonLd(
+            breadcrumbSchema([
+              { name: "Acasă", url: absoluteUrl("/") },
+              { name: "Jaluzele & Rolete", url: absoluteUrl(slug) },
+            ]),
+          ),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLd(
             serviceSchema({
               name: "Jaluzele și rolete la comandă Brașov",
               description: metadata.description as string,
-              url: `${siteConfig.url}${slug}`,
-              image: `${siteConfig.url}/images/cat-jaluzele.jpg`,
+              url: absoluteUrl(slug),
+              image: absoluteUrl("/images/cat-jaluzele.jpg"),
             }),
           ),
         }}

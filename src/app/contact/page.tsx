@@ -2,6 +2,12 @@ import type { Metadata } from "next";
 import { siteConfig } from "@/lib/site";
 import { ShowroomBlock } from "@/components/sections/showroom-block";
 import { ConsultationCta } from "@/components/sections/consultation-cta";
+import {
+  absoluteUrl,
+  breadcrumbSchema,
+  contactPageSchema,
+  jsonLd,
+} from "@/lib/seo";
 
 const slug = "/contact";
 const mapQuery = encodeURIComponent(
@@ -26,6 +32,21 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLd(
+            breadcrumbSchema([
+              { name: "Acasă", url: absoluteUrl("/") },
+              { name: "Contact", url: absoluteUrl(slug) },
+            ]),
+          ),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd(contactPageSchema()) }}
+      />
       <header className="px-6 pt-24 pb-12">
         <div className="max-w-7xl mx-auto">
           <span className="font-mono text-xs uppercase tracking-[0.2em] text-accent block mb-6">

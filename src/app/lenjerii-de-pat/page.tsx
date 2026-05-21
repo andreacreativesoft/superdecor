@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { siteConfig } from "@/lib/site";
-import { faqSchema, jsonLd, serviceSchema } from "@/lib/seo";
+import { absoluteUrl, breadcrumbSchema, faqSchema, jsonLd, serviceSchema } from "@/lib/seo";
 
 const slug = "/lenjerii-de-pat";
 
@@ -107,11 +107,22 @@ export default function LenjeriiDePatPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: jsonLd(
+            breadcrumbSchema([
+              { name: "Acasă", url: absoluteUrl("/") },
+              { name: "Lenjerii de pat", url: absoluteUrl(slug) },
+            ]),
+          ),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLd(
             serviceSchema({
               name: "Lenjerii de pat la comandă Brașov",
               description: metadata.description as string,
-              url: `${siteConfig.url}${slug}`,
-              image: `${siteConfig.url}/images/cat-lenjerii.jpg`,
+              url: absoluteUrl(slug),
+              image: absoluteUrl("/images/cat-lenjerii.jpg"),
             }),
           ),
         }}

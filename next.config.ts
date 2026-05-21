@@ -7,6 +7,7 @@ const ContentSecurityPolicy = [
   "img-src 'self' data: blob: https:",
   "font-src 'self' data:",
   "connect-src 'self' https://vitals.vercel-insights.com https://vercel.live",
+  "frame-src 'self' https://www.google.com",
   "frame-ancestors 'none'",
   "base-uri 'self'",
   "form-action 'self'",
@@ -25,6 +26,14 @@ const securityHeaders = [
     value: "camera=(), microphone=(), geolocation=(), browsing-topics=(), interest-cohort=()",
   },
   { key: "X-DNS-Prefetch-Control", value: "on" },
+];
+
+const legacyRedirects = [
+  { source: "/mobila", destination: "/mobila-la-comanda", permanent: true },
+  { source: "/perdele", destination: "/perdele-draperii", permanent: true },
+  { source: "/sine", destination: "/sine-galerii", permanent: true },
+  { source: "/jaluzele", destination: "/jaluzele-rolete", permanent: true },
+  { source: "/lenjerii", destination: "/lenjerii-de-pat", permanent: true },
 ];
 
 const nextConfig: NextConfig = {
@@ -46,6 +55,9 @@ const nextConfig: NextConfig = {
         ],
       },
     ];
+  },
+  async redirects() {
+    return legacyRedirects;
   },
 };
 

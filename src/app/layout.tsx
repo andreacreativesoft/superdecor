@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Playfair_Display, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
@@ -10,15 +10,24 @@ import {
   organizationSchema,
   websiteSchema,
 } from "@/lib/seo";
+import { SiteNav } from "@/components/site-nav";
+import { SiteFooter } from "@/components/site-footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin", "latin-ext"],
   display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin", "latin-ext"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
+const jetbrains = JetBrains_Mono({
+  variable: "--font-jetbrains",
   subsets: ["latin", "latin-ext"],
   display: "swap",
 });
@@ -26,7 +35,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} — Perdele, draperii și mobilă la comandă în Brașov`,
+    default: `${siteConfig.name} Brașov — Perdele, Draperii, Jaluzele & Mobilă la Comandă`,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
@@ -56,15 +65,10 @@ export const metadata: Metadata = {
     locale: siteConfig.locale,
     url: siteConfig.url,
     siteName: siteConfig.name,
-    title: `${siteConfig.name} — Perdele, draperii și mobilă la comandă în Brașov`,
+    title: `${siteConfig.name} Brașov — Perdele, Draperii, Jaluzele & Mobilă la Comandă`,
     description: siteConfig.description,
     images: [
-      {
-        url: siteConfig.ogImage,
-        width: 1200,
-        height: 630,
-        alt: siteConfig.name,
-      },
+      { url: siteConfig.ogImage, width: 1200, height: 630, alt: siteConfig.name },
     ],
   },
   twitter: {
@@ -95,8 +99,8 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#0E7C7B" },
-    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+    { media: "(prefers-color-scheme: light)", color: "#00657E" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a1a22" },
   ],
   colorScheme: "light dark",
 };
@@ -107,11 +111,13 @@ export default function RootLayout({
   return (
     <html
       lang={siteConfig.language}
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${playfair.variable} ${jetbrains.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
-        {children}
+        <SiteNav />
+        <div className="flex-1">{children}</div>
+        <SiteFooter />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: jsonLd(organizationSchema()) }}

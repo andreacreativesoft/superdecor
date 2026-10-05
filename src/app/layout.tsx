@@ -4,12 +4,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import { siteConfig } from "@/lib/site";
-import {
-  jsonLd,
-  localBusinessSchema,
-  organizationSchema,
-  websiteSchema,
-} from "@/lib/seo";
+import { jsonLd, localBusinessSchema, organizationSchema, websiteSchema } from "@/lib/seo";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 
@@ -67,9 +62,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     title: `${siteConfig.name} Brașov — Perdele, Draperii, Jaluzele & Mobilă la Comandă`,
     description: siteConfig.description,
-    images: [
-      { url: siteConfig.ogImage, width: 1200, height: 630, alt: siteConfig.name },
-    ],
+    images: [{ url: siteConfig.ogImage, width: 1200, height: 630, alt: siteConfig.name }],
   },
   twitter: {
     card: "summary_large_image",
@@ -105,16 +98,14 @@ export const viewport: Viewport = {
   colorScheme: "light dark",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
       lang={siteConfig.language}
       className={`${inter.variable} ${playfair.variable} ${jetbrains.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col bg-background text-foreground">
+      <body className="bg-background text-foreground flex min-h-full flex-col">
         <SiteNav />
         <div className="flex-1">{children}</div>
         <SiteFooter />
@@ -130,8 +121,13 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: jsonLd(localBusinessSchema()) }}
         />
-        <Analytics />
-        <SpeedInsights />
+        {/* ACSD - Vercel scripts only exist on Vercel */}
+        {process.env.VERCEL ? (
+          <>
+            <Analytics />
+            <SpeedInsights />
+          </>
+        ) : null}
       </body>
     </html>
   );

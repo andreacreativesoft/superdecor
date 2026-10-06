@@ -1,44 +1,48 @@
 import Image from "next/image";
 
 const partners = [
-  "/images/partner-1.png",
-  "/images/partner-2.png",
-  "/images/partner-3.png",
-  "/images/partner-4.png",
-  "/images/partner-5.png",
-  "/images/partner-6.png",
+  { name: "Casa Rossa", src: "/images/partners/casa-rossa.webp" },
+  { name: "SN Deco", src: "/images/partners/sn-deco.webp" },
+  { name: "Szintetika", src: "/images/partners/szintetika.webp" },
+  { name: "Global Design", src: "/images/partners/global-design.webp" },
+  { name: "Bradul Măneciu", src: "/images/partners/bradul-maneciu.webp" },
+  { name: "Sabaev", src: "/images/partners/sabaev.webp" },
 ];
 
 export function PartnersMarquee() {
-  const doubled = [...partners, ...partners];
   return (
-    <section className="py-24 px-6 bg-surface border-y border-border">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground block mb-4">
+    <section className="bg-surface border-border border-y px-6 py-24">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-12 text-center">
+          <span className="text-muted-foreground mb-4 block font-mono text-[10px] tracking-[0.2em] uppercase">
             [ Parteneri ]
           </span>
-          <h2 className="text-3xl md:text-4xl font-display italic text-balance">
+          <h2 className="font-display text-2xl text-balance italic md:text-4xl">
             Colaborăm cu branduri de încredere.
           </h2>
         </div>
         <div className="relative overflow-hidden">
-          <div className="flex animate-marquee gap-12 items-center">
-            {doubled.map((src, i) => (
-              <div
-                key={`${src}-${i}`}
-                className="shrink-0 h-24 w-32 relative opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"
-              >
-                <Image
-                  src={src}
-                  alt={`Partener ${(i % partners.length) + 1}`}
-                  fill
-                  sizes="128px"
-                  loading="lazy"
-                  className="object-contain"
-                />
-              </div>
-            ))}
+          <div className="animate-marquee flex w-max items-center">
+            {/* ACSD - second copy only keeps the loop seamless, hidden from screen readers */}
+            {[false, true].map((copy) =>
+              partners.map((p) => (
+                <div
+                  key={`${p.name}-${copy}`}
+                  aria-hidden={copy || undefined}
+                  className="mr-16 flex h-20 shrink-0 items-center opacity-80 transition-opacity hover:opacity-100 md:h-24"
+                >
+                  <Image
+                    src={p.src}
+                    alt={copy ? "" : p.name}
+                    width={400}
+                    height={100}
+                    loading="lazy"
+                    sizes="(max-width: 768px) 320px, 384px"
+                    className="h-full w-auto object-contain"
+                  />
+                </div>
+              )),
+            )}
           </div>
         </div>
       </div>

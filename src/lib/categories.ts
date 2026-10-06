@@ -16,14 +16,15 @@ export type Category = {
 };
 
 export const homeCategories = [
-  {
-    slug: "mobila",
-    href: "/mobila-la-comanda",
-    number: "01",
-    title: "Mobilă la Comandă",
-    short: "Piese unice adaptate spațiului tău.",
-    image: "/images/cat-mobila.jpg",
-  },
+  // ACSD - Mobilă la comandă hidden for now; uncomment to bring it back
+  // {
+  //   slug: "mobila",
+  //   href: "/mobila-la-comanda",
+  //   number: "01",
+  //   title: "Mobilă la Comandă",
+  //   short: "Piese unice adaptate spațiului tău.",
+  //   image: "/images/cat-mobila.jpg",
+  // },
   {
     slug: "perdele",
     href: "/perdele-draperii",

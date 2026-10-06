@@ -31,7 +31,11 @@ export const siteConfig = {
     email: "office@superdecor.ro",
   },
   hours: [
-    { day: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "09:00", closes: "18:00" },
+    {
+      day: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "09:00",
+      closes: "18:00",
+    },
     { day: ["Saturday"], opens: "10:00", closes: "14:00" },
   ],
   social: {
@@ -55,7 +59,8 @@ export const siteConfig = {
 } as const;
 
 export const navigation = [
-  { href: "/mobila-la-comanda", label: "Mobilă la comandă" },
+  // ACSD - Mobilă la comandă hidden for now; uncomment to bring it back
+  // { href: "/mobila-la-comanda", label: "Mobilă la comandă" },
   { href: "/perdele-draperii", label: "Perdele & Draperii" },
   { href: "/sine-galerii", label: "Șine & Galerii" },
   { href: "/jaluzele-rolete", label: "Jaluzele & Rolete" },

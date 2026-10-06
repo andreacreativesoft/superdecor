@@ -29,7 +29,10 @@ const securityHeaders = [
 ];
 
 const legacyRedirects = [
-  { source: "/mobila", destination: "/mobila-la-comanda", permanent: true },
+  // ACSD - Mobilă la comandă hidden for now: temporary redirects, restore the permanent one when it returns
+  // { source: "/mobila", destination: "/mobila-la-comanda", permanent: true },
+  { source: "/mobila", destination: "/", permanent: false },
+  { source: "/mobila-la-comanda", destination: "/", permanent: false },
   { source: "/perdele", destination: "/perdele-draperii", permanent: true },
   { source: "/sine", destination: "/sine-galerii", permanent: true },
   { source: "/jaluzele", destination: "/jaluzele-rolete", permanent: true },
@@ -50,9 +53,7 @@ const nextConfig: NextConfig = {
       { source: "/:path*", headers: securityHeaders },
       {
         source: "/:all*(svg|jpg|jpeg|png|webp|avif|ico|woff|woff2)",
-        headers: [
-          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
-        ],
+        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
       },
     ];
   },

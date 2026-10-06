@@ -1,80 +1,113 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { siteConfig } from "@/lib/site";
 import { absoluteUrl, breadcrumbSchema, faqSchema, jsonLd, serviceSchema } from "@/lib/seo";
+import img from "@/assets/cat-lenjerii.jpg";
+import mEgipt from "@/assets/lenjerii/Egipt.jpg";
+import mOrganic from "@/assets/lenjerii/Organic.jpg";
+import mDamasc from "@/assets/lenjerii/Damasc.jpg";
+import mRanforce from "@/assets/lenjerii/Ranforce.jpg";
+import mPercale from "@/assets/lenjerii/Percale.jpg";
+import mSatinat from "@/assets/lenjerii/Satinat.jpg";
+import mIn from "@/assets/lenjerii/In.jpg";
+import mJersey from "@/assets/lenjerii/Jersey_.jpg";
+import s1 from "@/assets/lenjerii/IMG-20250128-WA0038.jpg";
+import s2 from "@/assets/lenjerii/IMG-20250128-WA0002.jpg";
+import s3 from "@/assets/lenjerii/IMG-20250128-WA0016.jpg";
+import s4 from "@/assets/lenjerii/IMG-20250128-WA0025.jpg";
+import s5 from "@/assets/lenjerii/IMG-20250128-WA0031.jpg";
+import s6 from "@/assets/lenjerii/IMG-20250128-WA0034.jpg";
+import s7 from "@/assets/lenjerii/IMG-20250522-WA0037.jpg";
+import s8 from "@/assets/lenjerii/IMG-20250522-WA0039.jpg";
+import s9 from "@/assets/lenjerii/IMG-20250522-WA0041.jpg";
+import cc1 from "@/assets/lenjerii/cc-473279145.jpg";
+import cc2 from "@/assets/lenjerii/cc-473326716.jpg";
+import cc3 from "@/assets/lenjerii/cc-473330590.jpg";
+import cc4 from "@/assets/lenjerii/cc-472028725.jpg";
+import cc5 from "@/assets/lenjerii/cc-472441660.jpg";
+import cc6 from "@/assets/lenjerii/cc-473152900.jpg";
+import { SectionNav } from "@/components/SectionNav";
+import { ResponsiveImage } from "@/components/ResponsiveImage";
 
 const slug = "/lenjerii-de-pat";
 
 export const metadata: Metadata = {
-  title: "Lenjerii de Pat Brașov — Bumbac Satinat, In, Damasc",
+  title: {
+    absolute: "Lenjerii de Pat Brașov — Bumbac Egiptean, Damasc, Satinat, In | SuperDecor",
+  },
   description:
-    "Lenjerii de pat din bumbac egiptean, organic, satinat, damasc, ranforce, percale, in și jersey. În stoc și pe comandă, în showroomul SuperDecor Brașov.",
+    "Lenjerii de pat din bumbac egiptean, organic, damasc, ranforce, percale, satinat, in și jersey. În stoc și pe comandă la SuperDecor Brașov — cu finisaje manuale și consultanță în showroom.",
   alternates: { canonical: slug },
   openGraph: {
     title: "Lenjerii de Pat — SuperDecor Brașov",
     description:
-      "Lenjerii de pat din materiale fine: bumbac, in, damasc, satinat. În stoc și pe comandă.",
+      "Materiale fine pentru un somn răsfățat: bumbac, mătase, satin, in. În stoc și personalizate în atelier.",
     url: slug,
-    images: ["/images/cat-lenjerii.jpg"],
+    images: [img.src],
   },
 };
 
 const materials = [
   {
     name: "Bumbac egiptean",
-    desc: "Unul dintre cele mai fine tipuri de bumbac — extrem de moale, luxos, cu durabilitate crescută.",
+    img: mEgipt,
+    desc: "Unul dintre cele mai fine tipuri de bumbac — extrem de moale și luxos, oferă o senzație plăcută și o durabilitate crescută.",
   },
   {
     name: "Bumbac organic",
-    desc: "Cultivat ecologic, fără pesticide sau substanțe chimice nocive. Alegere sigură pentru sănătate.",
-  },
-  {
-    name: "Bumbac obișnuit",
-    desc: "Bumbac cu fire scurte, frecvent întâlnit în lenjeriile accesibile. Confortabil pentru uz zilnic.",
+    img: mOrganic,
+    desc: "Din culturi ecologice, fără pesticide sau substanțe chimice nocive. Alegere sigură pentru sănătatea familiei.",
   },
   {
     name: "Damasc",
-    desc: "Țesătură cu modele complexe și elegante, contrast subtil între lucios și mat. Foarte durabil.",
+    img: mDamasc,
+    desc: "Țesătură cu modele complexe și elegante, cu un contrast subtil între lucios și mat. Densă, foarte durabilă și rezistentă la uzură.",
   },
   {
     name: "Ranforce",
-    desc: "Fibre de înaltă calitate, țesute dens pentru o textură rezistentă, plăcută și de lungă durată.",
+    img: mRanforce,
+    desc: "Fibre de înaltă calitate țesute dens, pentru o textură rezistentă, plăcută la atingere și de lungă durată.",
   },
   {
     name: "Percale",
-    desc: "Țesătură respirabilă, răcoroasă, ușor mai aspră la atingere — ideală pentru somn ventilat.",
+    img: mPercale,
+    desc: "Metodă de țesere care lasă aerul să circule liber prin așternut — respirabilă, răcoroasă, ideală pentru somn ventilat.",
   },
   {
     name: "Satinat",
-    desc: "Suprafață netedă și lucioasă, aspect luxos. Oferă mai multă căldură și un luciu vizibil.",
+    img: mSatinat,
+    desc: "Suprafață netedă și lucioasă, aspect luxos. Oferă mai multă căldură și un luciu vizibil, foarte plăcut la atingere.",
   },
   {
     name: "In",
-    desc: "Extrem de respirabil, perfect pentru climat cald. Menține un mediu de somn răcoros vara.",
+    img: mIn,
+    desc: "Extrem de respirabil, perfect pentru climat cald. Menține un mediu de somn răcoros pe timpul verii.",
   },
   {
     name: "Jersey",
-    desc: "Tricotat, nu țesut — moale și elastic. Excelent pentru așternuturi de sezon rece.",
+    img: mJersey,
+    desc: "Tricotat, nu țesut — moale și elastic. Excelent pentru așternuturi de sezon rece, confortabil ca un tricou.",
   },
 ];
 
 const stocGallery = [
-  { src: "/images/lenjerie-1.jpg", label: "Lenjerie crem & bej" },
-  { src: "/images/lenjerie-2.jpg", label: "Set floral pastel" },
-  { src: "/images/lenjerie-3.jpg", label: "Dungi navy & alb" },
-  { src: "/images/lenjerie-4.jpg", label: "In verde-sage" },
+  { src: s1, label: "Set clasic bumbac" },
+  { src: s2, label: "Damasc contemporan" },
+  { src: s3, label: "Satinat luxos" },
+  { src: s4, label: "Ranforce imprimat" },
+  { src: s5, label: "In natural" },
+  { src: s6, label: "Percale respirabil" },
+  { src: s7, label: "Set premium 2025" },
+  { src: s8, label: "Bumbac egiptean" },
+  { src: s9, label: "Jersey confortabil" },
 ];
 
 const cameraCopilGallery = [
-  { src: "/images/camera-copil-1.jpg", label: "Animăluțe colorate" },
-  { src: "/images/camera-copil-2.jpg", label: "Unicorn & curcubeu" },
-  { src: "/images/camera-copil-3.jpg", label: "Naval albastru" },
-];
-
-const masterGallery = [
-  { src: "/images/master-1.jpg", label: "Gold & cream satin" },
-  { src: "/images/master-2.jpg", label: "Modern grey & white" },
-  { src: "/images/master-3.jpg", label: "Blush velvet romantic" },
+  { src: cc1, label: "Set copii — hipoalergenic" },
+  { src: cc2, label: "Modele vesele" },
+  { src: cc3, label: "Bumbac 100%" },
+  { src: cc4, label: "Culori pastel" },
+  { src: cc5, label: "Personalizări atelier" },
+  { src: cc6, label: "Confort pentru cei mici" },
 ];
 
 const faq = [
@@ -122,7 +155,7 @@ export default function LenjeriiDePatPage() {
               name: "Lenjerii de pat la comandă Brașov",
               description: metadata.description as string,
               url: absoluteUrl(slug),
-              image: absoluteUrl("/images/cat-lenjerii.jpg"),
+              image: absoluteUrl(img.src),
             }),
           ),
         }}
@@ -131,292 +164,280 @@ export default function LenjeriiDePatPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLd(faqSchema(faq)) }}
       />
-
-      <header className="relative min-h-[70vh] flex items-end">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/cat-lenjerii.jpg"
-            alt="Lenjerii de pat SuperDecor"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-primary/60" />
-        </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pb-20 pt-32">
-          <span className="font-mono text-xs text-accent uppercase tracking-[0.2em] block mb-6">
-            Categorie 05
-          </span>
-          <h1 className="text-5xl md:text-7xl font-display leading-[0.95] text-background max-w-3xl text-balance">
-            Lenjerii de pat fine, pentru somn răsfățat.
-          </h1>
-        </div>
-      </header>
-
-      <div className="border-b border-border bg-surface sticky top-16 md:top-20 z-30">
-        <div className="max-w-7xl mx-auto px-6 py-5 flex flex-wrap gap-x-8 gap-y-2 text-[11px] font-mono uppercase tracking-[0.16em] text-muted-foreground">
-          <a href="#materiale" className="hover:text-primary transition-colors">Materiale</a>
-          <a href="#stoc" className="hover:text-primary transition-colors">În stoc & pe comandă</a>
-          <a href="#inspirat" className="hover:text-primary transition-colors">GetInspired</a>
-          <a href="#camera-copil" className="hover:text-primary transition-colors">Camera copilului</a>
-          <a href="#master" className="hover:text-primary transition-colors">Master bedroom</a>
-        </div>
-      </div>
-
-      <section className="py-24 px-6">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16">
-          <div className="lg:col-span-5">
-            <span className="font-mono text-xs uppercase tracking-[0.2em] text-accent block mb-4">
-              Despre lenjeriile noastre
+      <div className="bg-background text-foreground">
+        {/* Hero */}
+        <header className="relative flex min-h-[70vh] items-end md:min-h-[calc(70vh-80px)]">
+          <div className="absolute inset-0 z-0">
+            <ResponsiveImage
+              picture={img}
+              alt="Lenjerii de pat SuperDecor Brașov"
+              sizes="100vw"
+              priority
+              pictureClassName="block w-full h-full"
+              className="h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-[#00657E]/60" />
+          </div>
+          <div className="relative z-10 mx-auto w-full max-w-7xl px-[19px] pt-32 pb-20 sm:px-6">
+            <span className="mb-6 block font-mono text-xs tracking-[0.2em] text-[#07BCC6] uppercase">
+              Lenjerii de pat
             </span>
-            <h2 className="text-3xl md:text-4xl font-display italic leading-tight text-balance">
-              Materiale alese cu grijă, pentru un dormitor cald și elegant.
-            </h2>
-          </div>
-          <div className="lg:col-span-7 text-muted-foreground leading-relaxed space-y-4 text-base">
-            <p>
-              La SuperDecor găsești o selecție atentă de lenjerii de pat din bumbac egiptean,
-              organic, damasc, ranforce, percale, satinat, in și jersey — materiale alese pentru
-              durabilitate, confort și un aspect impecabil.
-            </p>
-            <p>
-              Toate dimensiunile sunt disponibile: 1 persoană, 2 persoane și king-size. Modele
-              clasice, contemporane sau pentru camera copilului — cu opțiuni de pilote, perne și
-              cuverturi asortate.
-            </p>
-            <p>
-              Vino în showroomul nostru din Brașov să vezi mostrele pe viu sau cere consultanță
-              pentru un set personalizat.
+            <h1 className="font-display text-background max-w-3xl text-[36px] leading-[0.95] text-balance md:text-7xl">
+              Lenjerii de pat fine, pentru un somn răsfățat.
+            </h1>
+            <p className="text-background/80 mt-6 max-w-xl text-lg leading-relaxed">
+              Bumbac egiptean, damasc, satin, in — materiale alese cu grijă și finisaje manuale, în
+              showroomul SuperDecor Brașov.
             </p>
           </div>
-        </div>
-      </section>
+        </header>
 
-      <section id="materiale" className="py-24 px-6 bg-surface border-y border-border scroll-mt-28">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-end justify-between flex-wrap gap-6 mb-16">
-            <div>
-              <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground block mb-4">
-                [ Ghid materiale ]
-              </span>
-              <h2 className="text-4xl md:text-5xl font-display italic text-balance max-w-2xl">
-                Cum alegi țesătura potrivită.
-              </h2>
-            </div>
-            <p className="text-sm text-muted-foreground max-w-sm">
-              Fiecare material are propria personalitate. Te ajutăm să o găsești pe a ta.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
-            {materials.map((m, i) => (
-              <div
-                key={m.name}
-                className="bg-surface p-8 hover:bg-background transition-colors group"
-              >
-                <div className="flex items-baseline justify-between mb-4">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground/60">
-                    Țesătură
-                  </span>
-                </div>
-                <h3 className="text-2xl font-display mb-3 group-hover:text-primary transition-colors">
-                  {m.name}
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{m.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+        {/* Jump links */}
+        <SectionNav
+          items={[
+            { id: "materiale", label: "Materiale" },
+            { id: "stoc", label: "În stoc & pe comandă" },
+            { id: "inspirat", label: "GetInspired" },
+            { id: "camera-copil", label: "Camera copilului" },
+          ]}
+        />
 
-      <section id="stoc" className="py-24 px-6 scroll-mt-28">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-end justify-between flex-wrap gap-6 mb-16">
-            <div>
-              <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground block mb-4">
-                [ În stoc & pe comandă ]
-              </span>
-              <h2 className="text-4xl md:text-5xl font-display italic text-balance max-w-2xl">
-                Modele disponibile imediat sau personalizate.
-              </h2>
-            </div>
-            <p className="text-sm text-muted-foreground max-w-sm">
-              Alege din colecția noastră sau comandă dimensiuni și combinații unice.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {stocGallery.map((item) => (
-              <div
-                key={item.label}
-                className="group relative overflow-hidden bg-surface border border-border h-64"
-              >
-                <Image
-                  src={item.src}
-                  alt={item.label}
-                  fill
-                  loading="lazy"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4 z-10">
-                  <span className="text-background text-sm font-medium">{item.label}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="mt-12 grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+        {/* Intro */}
+        <section className="px-[19px] py-24 sm:px-6">
+          <div className="mx-auto grid max-w-7xl grid-cols-1 gap-16 lg:grid-cols-12">
             <div className="lg:col-span-5">
-              <p className="text-muted-foreground leading-relaxed mb-4">
-                Materialele de înaltă calitate și procesele de producție riguroase garantează
-                durabilitatea produselor, iar echipa specializată se ocupă de selecție, ajustare
-                și livrare.
-              </p>
-              <p className="text-muted-foreground leading-relaxed">
-                Ai întrebări specifice despre lenjerii de pat sau cuverturi? Cu plăcere — venim
-                cu sfaturi din experiență.
-              </p>
-            </div>
-            <div className="lg:col-span-7">
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-border border border-border">
-                {[
-                  "Toate dimensiunile (1, 2, king-size)",
-                  "Pilote și perne hipoalergenice",
-                  "Cuverturi matlasate de sezon",
-                  "Seturi pentru camera copilului",
-                  "Protecții saltea impermeabile",
-                  "Consultanță și ajustări în showroom",
-                ].map((b) => (
-                  <li key={b} className="bg-background p-6 flex gap-3 items-start text-sm">
-                    <span className="text-accent mt-0.5 shrink-0 font-mono">+</span>
-                    <span>{b}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="inspirat" className="py-24 px-6 bg-surface border-t border-border scroll-mt-28">
-        <div className="max-w-5xl mx-auto text-center">
-          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground block mb-6">
-            [ GetInspired ]
-          </span>
-          <h2 className="text-4xl md:text-5xl font-display italic mb-8 text-balance">
-            Combinăm modele clasice cu tendințe moderne.
-          </h2>
-          <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-            La SuperDecor îți oferim instrumentele necesare pentru a crea un spațiu personalizat
-            și inspirant. Fie că îți dorești un design minimalist sau unul exuberant, vei găsi
-            soluția perfectă pentru fiecare zi.
-          </p>
-        </div>
-      </section>
-
-      <section id="camera-copil" className="py-24 px-6 scroll-mt-28">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-end justify-between flex-wrap gap-6 mb-16">
-            <div>
-              <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground block mb-4">
-                [ Camera copilului ]
+              <span className="text-accent mb-4 block font-mono text-xs tracking-[0.2em] uppercase">
+                Despre lenjeriile noastre
               </span>
-              <h2 className="text-4xl md:text-5xl font-display italic text-balance max-w-2xl">
-                Veselie și confort pentru cei mici.
+              <h2 className="font-display text-[24px] leading-tight text-balance italic md:text-4xl">
+                Realizate manual, cu atenție la fiecare detaliu.
               </h2>
             </div>
-            <p className="text-sm text-muted-foreground max-w-sm">
-              Lenjerii colorate, hipoalergenice și rezistente, create special pentru copii.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {cameraCopilGallery.map((item) => (
-              <div
-                key={item.label}
-                className="group relative overflow-hidden bg-surface border border-border h-72"
-              >
-                <Image
-                  src={item.src}
-                  alt={item.label}
-                  fill
-                  loading="lazy"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4 z-10">
-                  <span className="text-background text-sm font-medium">{item.label}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="master" className="py-24 px-6 bg-surface border-y border-border scroll-mt-28">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-end justify-between flex-wrap gap-6 mb-16">
-            <div>
-              <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground block mb-4">
-                [ Master bedroom ]
-              </span>
-              <h2 className="text-4xl md:text-5xl font-display italic text-balance max-w-2xl">
-                Eleganță și rafinament pentru dormitorul principal.
-              </h2>
+            <div className="text-muted-foreground space-y-4 text-base leading-relaxed lg:col-span-7">
+              <p>
+                Lenjeriile de pat pot fi realizate dintr-o varietate de materiale, însă bumbacul,
+                mătasea și satinul au reputația de a produce cele mai plăcute și mai durabile
+                așternuturi.
+              </p>
+              <p>
+                În atelierul nostru, fiecare set este creat cu pasiune și personalizat în funcție de
+                preferințele tale. Utilizăm la cerere cele mai fine materiale naturale — de la
+                bumbacul egiptean la in — pentru un somn odihnitor și confortabil.
+              </p>
+              <p>
+                Vino în showroomul nostru din Brașov să vezi mostrele pe viu sau cere consultanță
+                pentru un set personalizat.
+              </p>
             </div>
-            <p className="text-sm text-muted-foreground max-w-sm">
-              Seturi premium de lenjerii, cuverturi și perne pentru un sanctuar personal.
+          </div>
+        </section>
+
+        {/* Materials grid */}
+        <section
+          id="materiale"
+          className="bg-surface border-border scroll-mt-28 border-y px-[19px] py-24 sm:px-6"
+        >
+          <div className="mx-auto max-w-7xl">
+            <div className="mb-16 flex flex-wrap items-end justify-between gap-6">
+              <div>
+                <span className="text-muted-foreground mb-4 block font-mono text-[10px] tracking-[0.2em] uppercase">
+                  [ Ghid materiale ]
+                </span>
+                <h2 className="font-display max-w-2xl text-[24px] text-balance italic md:text-5xl">
+                  Cum alegi țesătura potrivită.
+                </h2>
+              </div>
+              <p className="text-muted-foreground max-w-sm text-sm">
+                Fiecare material are propria personalitate. Te ajutăm să o găsești pe a ta.
+              </p>
+            </div>
+            <div className="bg-border grid grid-cols-1 gap-px md:grid-cols-2 lg:grid-cols-4">
+              {materials.map((m, i) => (
+                <div
+                  key={m.name}
+                  className="bg-surface hover:bg-background group flex flex-col transition-colors"
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    <ResponsiveImage
+                      picture={m.img}
+                      alt={m.name}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      pictureClassName="block w-full h-full"
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="flex flex-1 flex-col p-6">
+                    <div className="mb-3 flex items-baseline justify-between">
+                      <span className="font-mono text-[10px] tracking-[0.2em] text-[#07BCC6] uppercase">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <span className="text-muted-foreground/60 font-mono text-[10px] tracking-[0.2em] uppercase">
+                        Țesătură
+                      </span>
+                    </div>
+                    <h3 className="font-display mb-2 text-xl transition-colors group-hover:text-[#00657E]">
+                      {m.name}
+                    </h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed">{m.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* În stoc și pe comandă */}
+        <section id="stoc" className="scroll-mt-28 px-[19px] py-24 sm:px-6">
+          <div className="mx-auto max-w-7xl">
+            <div className="mb-16 flex flex-wrap items-end justify-between gap-6">
+              <div>
+                <span className="text-muted-foreground mb-4 block font-mono text-[10px] tracking-[0.2em] uppercase">
+                  [ În stoc & pe comandă ]
+                </span>
+                <h2 className="font-display max-w-2xl text-[24px] text-balance italic md:text-5xl">
+                  Modele disponibile imediat sau personalizate.
+                </h2>
+              </div>
+              <p className="text-muted-foreground max-w-sm text-sm">
+                Alege din colecția noastră sau comandă dimensiuni și combinații unice, croite în
+                atelier.
+              </p>
+            </div>
+            <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-3">
+              {stocGallery.map((item) => (
+                <div
+                  key={item.label}
+                  className="group bg-surface border-border relative overflow-hidden border"
+                >
+                  <ResponsiveImage
+                    picture={item.src}
+                    alt={item.label}
+                    sizes="(max-width: 768px) 50vw, 33vw"
+                    className="h-64 w-full object-cover transition-transform duration-500 group-hover:scale-105 md:h-72"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                    <span className="text-background text-sm font-medium">{item.label}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-12 grid grid-cols-1 items-start gap-16 lg:grid-cols-12">
+              <div className="lg:col-span-5">
+                <p className="text-muted-foreground mb-4 leading-relaxed">
+                  În atelierul nostru putem crea produse unice, adaptate exact nevoilor tale.
+                  Materialele de calitate și procesele de producție riguroase garantează
+                  durabilitatea, iar echipa specializată se ocupă de selecție, ajustare și finisaje.
+                </p>
+                <p className="text-muted-foreground leading-relaxed">
+                  Ai întrebări specifice despre lenjerii de pat sau cuverturi? Cu plăcere — venim cu
+                  sfaturi din experiență.
+                </p>
+              </div>
+              <div className="lg:col-span-7">
+                <ul className="bg-border border-border grid grid-cols-1 gap-px border sm:grid-cols-2">
+                  {[
+                    "Toate dimensiunile (1, 2, king-size)",
+                    "Pilote și perne hipoalergenice",
+                    "Cuverturi matlasate de sezon",
+                    "Seturi pentru camera copilului",
+                    "Protecții saltea impermeabile",
+                    "Consultanță și ajustări în showroom",
+                  ].map((b) => (
+                    <li key={b} className="bg-background flex items-start gap-3 p-6 text-sm">
+                      <span className="mt-0.5 shrink-0 font-mono text-[#07BCC6]">+</span>
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* GetInspired */}
+        <section
+          id="inspirat"
+          className="bg-surface border-border scroll-mt-28 border-t px-[19px] py-24 sm:px-6"
+        >
+          <div className="mx-auto max-w-5xl text-center">
+            <span className="text-muted-foreground mb-6 block font-mono text-[10px] tracking-[0.2em] uppercase">
+              [ GetInspired ]
+            </span>
+            <h2 className="font-display mb-8 text-[24px] text-balance italic md:text-5xl">
+              Combinăm modele clasice cu tendințe moderne.
+            </h2>
+            <p className="text-muted-foreground mx-auto max-w-2xl text-lg leading-relaxed">
+              La SuperDecor îți oferim instrumentele necesare pentru a crea un spațiu personalizat
+              și inspirant. Fie că îți dorești un design minimalist sau unul exuberant, vei găsi
+              soluția perfectă pentru fiecare zi.
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {masterGallery.map((item) => (
-              <div
-                key={item.label}
-                className="group relative overflow-hidden bg-surface border border-border h-72"
-              >
-                <Image
-                  src={item.src}
-                  alt={item.label}
-                  fill
-                  loading="lazy"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4 z-10">
-                  <span className="text-background text-sm font-medium">{item.label}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="py-24 px-6 bg-primary text-background">
-        <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-display italic mb-6 text-balance">
-            Vino să vezi mostrele în showroom.
-          </h2>
-          <p className="text-background/80 max-w-xl mx-auto mb-10">
-            Te așteptăm cu sfaturi, mostre de materiale și combinații pregătite special pentru
-            dormitorul tău.
-          </p>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <a
-              href={`tel:${siteConfig.contact.phoneE164}`}
-              className="bg-background text-foreground px-8 py-4 text-xs font-semibold uppercase tracking-[0.18em] hover:bg-accent hover:text-background transition-colors"
-            >
-              Sună acum
-            </a>
-            <a
-              href={`mailto:${siteConfig.contact.email}?subject=Lenjerii%20de%20pat`}
-              className="border border-background/30 px-8 py-4 text-xs font-semibold uppercase tracking-[0.18em] hover:bg-background hover:text-foreground transition-colors"
-            >
-              Scrie-ne un email
-            </a>
+        {/* Camera copilului */}
+        <section id="camera-copil" className="scroll-mt-28 px-[19px] py-24 sm:px-6">
+          <div className="mx-auto max-w-7xl">
+            <div className="mb-16 flex flex-wrap items-end justify-between gap-6">
+              <div>
+                <span className="text-muted-foreground mb-4 block font-mono text-[10px] tracking-[0.2em] uppercase">
+                  [ Camera copilului ]
+                </span>
+                <h2 className="font-display max-w-2xl text-[24px] text-balance italic md:text-5xl">
+                  Veselie și confort pentru cei mici.
+                </h2>
+              </div>
+              <p className="text-muted-foreground max-w-sm text-sm">
+                Lenjerii colorate, hipoalergenice și rezistente, create special pentru copii.
+              </p>
+            </div>
+            <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
+              {cameraCopilGallery.map((item) => (
+                <div
+                  key={item.label}
+                  className="group bg-surface border-border relative overflow-hidden border"
+                >
+                  <ResponsiveImage
+                    picture={item.src}
+                    alt={item.label}
+                    sizes="(max-width: 768px) 50vw, 33vw"
+                    className="h-64 w-full object-cover transition-transform duration-500 group-hover:scale-105 md:h-72"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                    <span className="text-background text-sm font-medium">{item.label}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+
+        {/* CTA */}
+        <section className="text-background bg-[#00657E] px-[19px] py-24 sm:px-6">
+          <div className="mx-auto max-w-5xl text-center">
+            <h2 className="font-display mb-6 text-[24px] text-balance italic md:text-5xl">
+              Vino să vezi mostrele în showroom.
+            </h2>
+            <p className="text-background/80 mx-auto mb-10 max-w-xl">
+              Te așteptăm în Brașov cu sfaturi, mostre de materiale și combinații pregătite special
+              pentru dormitorul tău.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <a
+                href="tel:+40728893118"
+                className="bg-background text-foreground hover:text-background px-8 py-4 text-xs font-semibold tracking-[0.18em] uppercase transition-colors hover:bg-[#07BCC6]"
+              >
+                Sună acum
+              </a>
+              <a
+                href={`mailto:${siteConfig.contact.email}?subject=Lenjerii%20de%20pat`}
+                className="border-background/30 hover:bg-background hover:text-foreground border px-8 py-4 text-xs font-semibold tracking-[0.18em] uppercase transition-colors"
+              >
+                Scrie-ne un email
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
     </>
   );
 }

@@ -1,70 +1,112 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { siteConfig } from "@/lib/site";
+import img from "@/assets/cat-jaluzele.jpg";
+import verticalBlinds from "@/assets/jaluzele-verticale.webp";
+import orizontaleImg from "@/assets/jaluzele-orizontale.webp";
+import plisateImg from "@/assets/jaluzele-plisate.webp";
+import casetateImg from "@/assets/rolete-casetate.webp";
+import reco7 from "@/assets/jaluzele-rolete-brasov-1.webp";
+import reco8 from "@/assets/jaluzele-rolete-brasov-2.webp";
+import roleteTextile from "@/assets/rolete-textile.webp";
+import roleteBlackout from "@/assets/rolete-blackout.webp";
+import proiectBrasov from "@/assets/jaluzele-proiect-brasov.webp";
+import { SectionNav } from "@/components/SectionNav";
+import { ResponsiveImage } from "@/components/ResponsiveImage";
+import { LightboxGrid } from "@/components/pages/jaluzele-rolete/LightboxGrid";
 import { absoluteUrl, breadcrumbSchema, faqSchema, jsonLd, serviceSchema } from "@/lib/seo";
 
 const slug = "/jaluzele-rolete";
 
+const CARD_SIZES =
+  "(max-width: 767px) 100vw, (max-width: 1023px) 50vw, (max-width: 1328px) 33vw, 405px";
+const FEATURE_SIZES = "(max-width: 1023px) 100vw, (max-width: 1328px) 50vw, 608px";
+const RECO_SIZES =
+  "(max-width: 767px) 50vw, (max-width: 1023px) 33vw, (max-width: 1328px) 25vw, 308px";
+const PROIECT_SIZES =
+  "(max-width: 639px) 100vw, (max-width: 1023px) 50vw, (max-width: 1328px) 25vw, 308px";
+
 export const metadata: Metadata = {
-  title: "Jaluzele & Rolete Brașov — Textile, Lemn, Blackout, Exterior",
+  title: {
+    absolute: "Jaluzele și Rolete Brașov — Textile, Lemn, Blackout, Exterior | SuperDecor",
+  },
   description:
-    "Rolete textile, jaluzele orizontale și verticale, rolete casetate, blackout și rulouri de exterior. Montaj profesional în Brașov.",
+    "Rolete textile, jaluzele verticale, orizontale, plisate, casetate, blackout, day & night, romane și rulouri de exterior. Montaj profesional în Brașov.",
   alternates: { canonical: slug },
   openGraph: {
     title: "Jaluzele & Rolete — SuperDecor Brașov",
     description:
       "Control precis al luminii: rolete textile, jaluzele lemn/aluminiu, blackout, romane și rulouri exterior.",
     url: slug,
-    images: ["/images/cat-jaluzele.jpg"],
+    images: [img.src],
   },
 };
 
 const tipuri = [
   {
     name: "Rolete textile",
-    desc: "Eleganță și control precis al umbririi — bagheta poate fi teșită, semirotundă sau dreptunghiulară. Acționare facilă cu lănțișor.",
-  },
-  {
-    name: "Jaluzele orizontale",
-    desc: "Lemn, aluminiu sau bambus. Aspectuoase și ușor de montat — controlul exact al cantității de lumină naturală.",
+    tag: "Sistem",
+    desc: "O variantă elegantă pentru umbrirea bucătăriei sau a livingului. Bagheta poate fi teșită, semirotundă sau dreptunghiulară, iar acționarea se face facil printr-un lănțișor care ajustează perfect nivelul de umbrire.",
+    img: roleteTextile,
   },
   {
     name: "Jaluzele verticale",
-    desc: "Soluție clasică pentru ferestre mari și birouri. Lamele textile rotative pentru reglarea direcției luminii.",
+    tag: "Ferestre mari",
+    desc: "Soluție clasică pentru ferestre mari, birouri sau spații de zi. Lamele textile rotative permit reglarea direcției luminii și oferă intimitate — disponibile într-o gamă largă de culori.",
+    img: verticalBlinds,
+  },
+  {
+    name: "Jaluzele orizontale",
+    tag: "Lemn · Aluminiu",
+    desc: "Accesorii ieftine, ușor de montat și foarte aspectuoase. Din lemn, aluminiu sau bambus — te ajută să controlezi cu ușurință cantitatea de lumină care intră în cameră.",
+    img: orizontaleImg,
   },
   {
     name: "Jaluzele plisate",
-    desc: "Sistem compact, perfect pentru ferestre atipice — mansardă, formă specială. Estetică modernă și discretă.",
+    tag: "Ferestre atipice",
+    desc: "Sistem compact, perfect pentru ferestre atipice — mansardă, formă triunghiulară sau trapezoidală. Estetică modernă, discretă, care se pliază perfect pe cadrul ferestrei.",
+    img: plisateImg,
   },
   {
     name: "Rolete casetate & necasetate",
-    desc: "Se adaptează oricărei tâmplării. Opresc lumina soarelui și privirile indiscrete, cu finisaj curat.",
+    tag: "Adaptabil",
+    desc: "Se adaptează pentru orice dimensiune a tâmplăriei. Au un dublu rol: opresc atât lumina soarelui, cât și privirile indiscrete — finisaj curat, direct pe cercevea.",
+    img: casetateImg,
   },
   {
     name: "Rolete blackout",
-    desc: "Obturare totală a luminii pentru dormitor, sală media sau camera copilului. Somn odihnitor garantat.",
-  },
-  {
-    name: "Rolete day & night",
-    desc: "Țesătură cu benzi alternante translucide și opace — control gradual al luminii printr-un singur sistem.",
-  },
-  {
-    name: "Jaluzele romane",
-    desc: "Combină eleganța draperiilor cu funcționalitatea jaluzelelor. Versatile, izolație termică și acustică.",
-  },
-  {
-    name: "Rulouri de exterior",
-    desc: "Aplicate pe fereastră sau perete, cu acționare manuală sau telecomandă. Obturare 100%, izolație termică, fonică și antiefracție.",
+    tag: "Somn odihnitor",
+    desc: "Obturare totală a luminii pentru dormitor, sală media sau camera copilului. Somn odihnitor garantat și o barieră termică suplimentară vara și iarna.",
+    img: roleteBlackout,
   },
 ];
 
-const proiecte = [
-  { src: "/images/jaluzele-1.jpg", label: "Rolete albe living" },
-  { src: "/images/jaluzele-2.jpg", label: "Jaluzele lemn bucătărie" },
-  { src: "/images/jaluzele-3.jpg", label: "Rolete day & night dormitor" },
-  { src: "/images/jaluzele-4.jpg", label: "Jaluzele romane in" },
-  { src: "/images/jaluzele-5.jpg", label: "Verticale birou" },
-  { src: "/images/jaluzele-6.jpg", label: "Rulouri exterior" },
+const rulourExteriorBenefits = [
+  "Obturează 100% lumina, atât ziua cât și noaptea.",
+  "Izolează termic — vara păstrează răcoarea, iarna căldura.",
+  "Izolare fonică pentru un interior liniștit.",
+  "Protecție antiefracție suplimentară pentru locuință.",
+];
+
+const romanaFeatures: [string, string][] = [
+  ["Versatilitate", "Se potrivesc în orice încăpere — living, dormitor, bucătărie sau baie."],
+  ["Personalizare", "Gamă variată de țesături, culori și modele pentru un design unic."],
+  ["Controlul luminii", "De la lumină difuză la întuneric total, printr-un singur sistem."],
+  ["Izolație", "Materiale de calitate care oferă izolare termică și acustică."],
+  ["Întreținere ușoară", "Unele modele se pot spăla la mașină, fără finisaje speciale."],
+  ["Aspect sofisticat", "Cădere uniformă și pliuri elegante — între draperie și jaluzea."],
+];
+
+const proiecte = [roleteTextile, reco7, verticalBlinds, proiectBrasov];
+
+const recomandari = [
+  plisateImg,
+  verticalBlinds,
+  casetateImg,
+  roleteTextile,
+  roleteBlackout,
+  orizontaleImg,
+  reco7,
+  reco8,
 ];
 
 const faq = [
@@ -92,7 +134,7 @@ const faq = [
 
 export default function JaluzeleRoletePage() {
   return (
-    <>
+    <div className="bg-background text-foreground">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -122,132 +164,160 @@ export default function JaluzeleRoletePage() {
         dangerouslySetInnerHTML={{ __html: jsonLd(faqSchema(faq)) }}
       />
 
-      <header className="relative min-h-[70vh] flex items-end">
+      {/* Hero */}
+      <header className="relative flex min-h-[70vh] items-end md:min-h-[calc(70vh-80px)]">
         <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/cat-jaluzele.jpg"
-            alt="Jaluzele și rolete SuperDecor"
-            fill
-            priority
+          <ResponsiveImage
+            picture={img}
+            alt="Jaluzele și rolete SuperDecor Brașov"
             sizes="100vw"
-            className="object-cover"
+            priority
+            pictureClassName="block w-full h-full"
+            className="h-full w-full object-cover"
           />
-          <div className="absolute inset-0 bg-primary/60" />
+          <div className="absolute inset-0 bg-[#00657E]/60" />
         </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pb-20 pt-32">
-          <span className="font-mono text-xs text-accent uppercase tracking-[0.2em] block mb-6">
-            Categorie 04
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-[19px] pt-32 pb-20 sm:px-6">
+          <span className="mb-6 block font-mono text-xs tracking-[0.2em] text-[#07BCC6] uppercase">
+            Jaluzele și rolete
           </span>
-          <h1 className="text-5xl md:text-7xl font-display leading-[0.95] text-background max-w-3xl text-balance">
+          <h1 className="font-display text-background max-w-3xl text-[36px] leading-[0.95] text-balance md:text-7xl">
             Jaluzele și rolete pentru control precis al luminii.
           </h1>
+          <p className="text-background/85 mt-8 max-w-2xl text-lg leading-relaxed">
+            Rolete textile, jaluzele din lemn, aluminiu sau bambus, blackout, day & night, romane și
+            rulouri de exterior — montate profesional în Brașov.
+          </p>
         </div>
       </header>
 
-      <div className="border-b border-border bg-surface sticky top-16 md:top-20 z-30">
-        <div className="max-w-7xl mx-auto px-6 py-5 flex flex-wrap gap-x-8 gap-y-2 text-[11px] font-mono uppercase tracking-[0.16em] text-muted-foreground">
-          <a href="#tipuri" className="hover:text-primary transition-colors">Tipuri</a>
-          <a href="#romane" className="hover:text-primary transition-colors">Jaluzele romane</a>
-          <a href="#proiecte" className="hover:text-primary transition-colors">Proiecte recente</a>
-          <a href="#atelier" className="hover:text-primary transition-colors">Atelier</a>
-        </div>
-      </div>
+      {/* Jump links */}
+      <SectionNav
+        items={[
+          { id: "despre", label: "Despre" },
+          { id: "tipuri", label: "Tipuri" },
+          { id: "exterior", label: "Rulouri exterior" },
+          { id: "romane", label: "Jaluzele romane" },
+          { id: "recomandari", label: "Designerii recomandă" },
+          { id: "proiecte", label: "Proiecte recente" },
+        ]}
+      />
 
-      <section className="py-24 px-6">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16">
+      {/* Intro */}
+      <section id="despre" className="scroll-mt-28 px-[19px] py-24 sm:px-6">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-16 lg:grid-cols-12">
           <div className="lg:col-span-5">
-            <span className="font-mono text-xs uppercase tracking-[0.2em] text-accent block mb-4">
+            <span className="text-accent mb-4 block font-mono text-xs tracking-[0.2em] uppercase">
               Despre jaluzele și rolete
             </span>
-            <h2 className="text-3xl md:text-4xl font-display italic leading-tight text-balance">
+            <h2 className="font-display text-[24px] leading-tight text-balance italic md:text-4xl">
               În armonie cu stilul tău, cromatic și decorativ.
             </h2>
           </div>
-          <div className="lg:col-span-7 text-muted-foreground leading-relaxed space-y-4 text-base">
+          <div className="text-muted-foreground space-y-4 text-base leading-relaxed lg:col-span-7">
             <p>
-              Jaluzelele și roletele se aleg în funcție de stilul de amenajare al încăperii —
-              atât din punct de vedere cromatic, cât și decorativ. Ele oferă control precis al
-              luminii naturale și intimitate, fiind în același timp un element estetic important.
+              Roletele și jaluzelele sunt extrem de variate. Aspectul elegant și modern, capacitatea
+              de a controla cantitatea de lumină naturală care intră în încăpere, precum și
+              utilizarea facilă sunt doar câteva dintre avantajele fundamentale pentru care alegi
+              montarea lor în spațiul rezidențial sau de birou.
             </p>
             <p>
-              La SuperDecor găsești toată gama: rolete textile, jaluzele din lemn, aluminiu sau
-              bambus, rolete casetate sau necasetate, blackout pentru dormitor, day & night,
-              romane și rulouri de exterior cu telecomandă.
+              Jaluzelele trebuie să fie în armonie cu stilul de amenajare al unei încăperi — atât
+              din punct de vedere cromatic, cât și decorativ. La SuperDecor găsești toată gama:
+              rolete textile, jaluzele din lemn, aluminiu sau bambus, blackout, day & night, romane
+              și rulouri de exterior cu telecomandă.
             </p>
-            <p>
-              Vino în showroomul nostru din Brașov pentru consultanță, măsurători și montaj
-              profesional.
+            <p className="text-foreground">
+              Vino în showroomul din Brașov pentru{" "}
+              <em>consultanță, mostre și măsurători gratuite</em>.
             </p>
           </div>
         </div>
       </section>
 
-      <section id="tipuri" className="py-24 px-6 bg-surface border-y border-border scroll-mt-28">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-end justify-between flex-wrap gap-6 mb-16">
+      {/* Tipuri — cards with images */}
+      <section
+        id="tipuri"
+        className="bg-surface border-border scroll-mt-28 border-y px-[19px] py-24 sm:px-6"
+      >
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-16 flex flex-wrap items-end justify-between gap-6">
             <div>
-              <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground block mb-4">
+              <span className="text-muted-foreground mb-4 block font-mono text-[10px] tracking-[0.2em] uppercase">
                 [ Ghid produse ]
               </span>
-              <h2 className="text-4xl md:text-5xl font-display italic text-balance max-w-2xl">
+              <h2 className="font-display max-w-2xl text-[24px] text-balance italic md:text-5xl">
                 Cum alegi soluția potrivită pentru spațiul tău.
               </h2>
             </div>
-            <p className="text-sm text-muted-foreground max-w-sm">
+            <p className="text-muted-foreground max-w-sm text-sm">
               Fiecare tip de jaluzea sau roletă are rolul ei. Te ajutăm să o alegi pe a ta.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {tipuri.map((t, i) => (
-              <div
+              <article
                 key={t.name}
-                className="bg-surface p-8 hover:bg-background transition-colors group"
+                className="group bg-background border-border hover:shadow-foreground/5 overflow-hidden border transition-shadow hover:shadow-2xl"
               >
-                <div className="flex items-baseline justify-between mb-4">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground/60">
-                    Sistem
-                  </span>
+                <div className="bg-surface aspect-[4/5] overflow-hidden">
+                  <ResponsiveImage
+                    picture={t.img}
+                    alt={t.name}
+                    sizes={CARD_SIZES}
+                    pictureClassName="block w-full h-full"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
                 </div>
-                <h3 className="text-2xl font-display mb-3 group-hover:text-primary transition-colors">
-                  {t.name}
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{t.desc}</p>
-              </div>
+                <div className="p-6">
+                  <div className="mb-3 flex items-baseline justify-between">
+                    <span className="font-mono text-[10px] tracking-[0.2em] text-[#07BCC6] uppercase">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="text-muted-foreground/60 font-mono text-[10px] tracking-[0.2em] uppercase">
+                      {t.tag}
+                    </span>
+                  </div>
+                  <h3 className="font-display mb-3 text-[20px] transition-colors group-hover:text-[#00657E] md:text-2xl">
+                    {t.name}
+                  </h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{t.desc}</p>
+                </div>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="romane" className="py-24 px-6 scroll-mt-28">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-          <div className="lg:col-span-5">
-            <span className="font-mono text-xs uppercase tracking-[0.2em] text-accent block mb-4">
-              De ce jaluzele romane?
-            </span>
-            <h2 className="text-3xl md:text-4xl font-display italic leading-tight mb-8 text-balance">
-              Eleganța draperiilor, funcționalitatea jaluzelelor.
-            </h2>
-            <p className="text-muted-foreground leading-relaxed">
-              O alegere excelentă pentru cei care doresc să îmbine estetica cu practicitatea — un
-              aspect sofisticat și versatil pentru orice încăpere.
-            </p>
+      {/* Rulouri de exterior — feature */}
+      <section id="exterior" className="scroll-mt-28 px-[19px] py-24 sm:px-6">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-16 lg:grid-cols-12">
+          <div className="bg-surface border-border order-2 aspect-[4/3] overflow-hidden border lg:order-1 lg:col-span-6">
+            <ResponsiveImage
+              picture={roleteTextile}
+              alt="Rulouri de exterior — SuperDecor Brașov"
+              sizes={FEATURE_SIZES}
+              pictureClassName="block w-full h-full"
+              className="h-full w-full object-cover"
+            />
           </div>
-          <div className="lg:col-span-7">
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-border border border-border">
-              {[
-                ["Versatilitate", "Living, dormitor, bucătărie sau baie."],
-                ["Personalizare", "Țesături, culori și modele variate."],
-                ["Controlul luminii", "De la difuză la întuneric total."],
-                ["Izolație", "Termică și acustică superioară."],
-                ["Întreținere ușoară", "Unele modele se spală la mașină."],
-                ["Aspect sofisticat", "Cădere uniformă și pliuri elegante."],
-              ].map(([title, body]) => (
-                <li key={title} className="bg-background p-6 text-sm">
-                  <div className="font-medium mb-1">{title}</div>
-                  <div className="text-muted-foreground">{body}</div>
+          <div className="order-1 lg:order-2 lg:col-span-6">
+            <span className="text-muted-foreground mb-4 block font-mono text-[10px] tracking-[0.2em] uppercase">
+              [ Rulouri de exterior ]
+            </span>
+            <h2 className="font-display mb-6 text-[24px] text-balance italic md:text-5xl">
+              Soluția completă pentru orice încăpere.
+            </h2>
+            <p className="text-muted-foreground mb-8 leading-relaxed">
+              Rulourile de exterior sunt aplicate pe fereastră sau pe perete. Acționarea lor se
+              poate face atât manual, cât și cu telecomandă — o soluție ideală pentru orice
+              încăpere.
+            </p>
+            <ul className="space-y-3">
+              {rulourExteriorBenefits.map((b) => (
+                <li key={b} className="flex items-start gap-3 text-sm">
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#07BCC6]" />
+                  <span className="text-foreground/90">{b}</span>
                 </li>
               ))}
             </ul>
@@ -255,86 +325,127 @@ export default function JaluzeleRoletePage() {
         </div>
       </section>
 
-      <section id="proiecte" className="py-24 px-6 bg-surface border-y border-border scroll-mt-28">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-end justify-between flex-wrap gap-6 mb-16">
+      {/* Jaluzele romane — feature grid */}
+      <section
+        id="romane"
+        className="bg-surface border-border scroll-mt-28 border-y px-[19px] py-24 sm:px-6"
+      >
+        <div className="mx-auto grid max-w-7xl grid-cols-1 items-start gap-16 lg:grid-cols-12">
+          <div className="lg:sticky lg:top-32 lg:col-span-5">
+            <span className="text-muted-foreground mb-4 block font-mono text-[10px] tracking-[0.2em] uppercase">
+              [ De ce jaluzele romane? ]
+            </span>
+            <h2 className="font-display mb-8 text-[24px] text-balance italic md:text-5xl">
+              Eleganța draperiilor, funcționalitatea jaluzelelor.
+            </h2>
+            <p className="text-muted-foreground leading-relaxed">
+              Jaluzelele romane reprezintă o alegere excelentă pentru cei care doresc să îmbine
+              estetica cu practicitatea — un aspect sofisticat și versatil pentru orice încăpere.
+            </p>
+          </div>
+          <ul className="bg-border border-border grid grid-cols-1 gap-px border sm:grid-cols-2 lg:col-span-7">
+            {romanaFeatures.map(([title, body]) => (
+              <li key={title} className="bg-background p-6 text-sm">
+                <div className="mb-1 font-medium">{title}</div>
+                <div className="text-muted-foreground">{body}</div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* Designerii recomandă */}
+      <section id="recomandari" className="scroll-mt-28 px-[19px] py-24 sm:px-6">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-16 flex flex-wrap items-end justify-between gap-6">
             <div>
-              <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground block mb-4">
+              <span className="text-muted-foreground mb-4 block font-mono text-[10px] tracking-[0.2em] uppercase">
+                [ Designerii SuperDecor recomandă ]
+              </span>
+              <h2 className="font-display max-w-2xl text-[24px] text-balance italic md:text-5xl">
+                Combinații care „îmbracă" ferestrele.
+              </h2>
+            </div>
+            <p className="text-muted-foreground max-w-sm text-sm">
+              O selecție de modele de jaluzele și rolete, alese de echipa noastră pentru orice
+              încăpere.
+            </p>
+          </div>
+          <LightboxGrid
+            images={recomandari}
+            altPrefix="Recomandare jaluzele SuperDecor"
+            sizes={RECO_SIZES}
+            gridClassName="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+            buttonClassName="group relative overflow-hidden bg-surface border border-border aspect-square block text-left"
+          />
+        </div>
+      </section>
+
+      {/* Proiecte recente */}
+      <section
+        id="proiecte"
+        className="bg-surface border-border scroll-mt-28 border-y px-[19px] py-24 sm:px-6"
+      >
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-16 flex flex-wrap items-end justify-between gap-6">
+            <div>
+              <span className="text-muted-foreground mb-4 block font-mono text-[10px] tracking-[0.2em] uppercase">
                 [ Proiecte recente ]
               </span>
-              <h2 className="text-4xl md:text-5xl font-display italic text-balance max-w-2xl">
+              <h2 className="font-display max-w-2xl text-[24px] text-balance italic md:text-5xl">
                 Soluții montate, în spații reale.
               </h2>
             </div>
-            <p className="text-sm text-muted-foreground max-w-sm">
-              Câteva exemple recente din proiectele clienților noștri.
+            <p className="text-muted-foreground max-w-sm text-sm">
+              Câteva exemple recente din proiectele clienților noștri din Brașov și împrejurimi.
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {proiecte.map((item) => (
-              <div
-                key={item.label}
-                className="group relative overflow-hidden bg-background border border-border h-72"
-              >
-                <Image
-                  src={item.src}
-                  alt={item.label}
-                  fill
-                  loading="lazy"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4 z-10">
-                  <span className="text-background text-sm font-medium">{item.label}</span>
-                </div>
-              </div>
-            ))}
+          <LightboxGrid
+            images={proiecte}
+            altPrefix="Proiect jaluzele SuperDecor"
+            sizes={PROIECT_SIZES}
+            gridClassName="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
+            buttonClassName="group relative overflow-hidden bg-background border border-border aspect-[3/4] block text-left"
+          />
+          <div className="mt-16 max-w-3xl">
+            <p className="text-muted-foreground leading-relaxed">
+              În atelierul nostru putem crea produse unice, adaptate exact nevoilor și preferințelor
+              tale. Materialele de înaltă calitate și procesele de producție riguroase garantează
+              durabilitatea, iar echipa specializată se ocupă de instalarea produselor — asigurând o
+              funcționare optimă. Îți oferim{" "}
+              <em className="text-foreground">consultanță gratuită</em> pentru a alege cele mai
+              potrivite jaluzele, rulouri sau plisuri pentru casă sau birou.
+            </p>
           </div>
         </div>
       </section>
 
-      <section id="atelier" className="py-24 px-6 scroll-mt-28">
-        <div className="max-w-5xl mx-auto text-center">
-          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground block mb-6">
-            [ Designerii SuperDecor recomandă ]
-          </span>
-          <h2 className="text-4xl md:text-5xl font-display italic mb-8 text-balance">
-            În atelier creăm produse unice, adaptate ție.
+      {/* CTA */}
+      <section className="text-background bg-[#00657E] px-[19px] py-24 sm:px-6">
+        <div className="mx-auto max-w-5xl text-center">
+          <h2 className="font-display mb-6 text-[24px] text-balance italic md:text-5xl">
+            Programează măsurătoarea gratuită.
           </h2>
-          <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-            Materialele de înaltă calitate și procesele de producție riguroase garantează
-            durabilitatea produselor, iar echipa specializată se ocupă de instalare, asigurând o
-            funcționare optimă. Ai întrebări specifice despre jaluzele, rulouri sau plisuri? Cu
-            plăcere — venim cu sfaturi din experiență.
+          <p className="text-background/80 mx-auto mb-10 max-w-xl">
+            Venim la tine cu mostre, măsurăm ferestrele și îți propunem soluția potrivită —
+            jaluzele, rolete sau rulouri de exterior, în Brașov și împrejurimi.
           </p>
-        </div>
-      </section>
-
-      <section className="py-24 px-6 bg-primary text-background">
-        <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-display italic mb-6 text-balance">
-            Hai să măsurăm împreună ferestrele tale.
-          </h2>
-          <p className="text-background/80 max-w-xl mx-auto mb-10">
-            Programează o consultanță gratuită — venim cu mostre, măsurători și recomandări pentru
-            fiecare încăpere.
-          </p>
-          <div className="flex flex-wrap gap-4 justify-center">
+          <div className="flex flex-wrap justify-center gap-4">
             <a
-              href={`tel:${siteConfig.contact.phoneE164}`}
-              className="bg-background text-foreground px-8 py-4 text-xs font-semibold uppercase tracking-[0.18em] hover:bg-accent hover:text-background transition-colors"
+              href="tel:+40728893118"
+              className="bg-background text-foreground hover:text-background px-8 py-4 text-xs font-semibold tracking-[0.18em] uppercase transition-colors hover:bg-[#07BCC6]"
             >
-              Sună acum
+              Sună 0728 893 118
             </a>
             <a
               href={`mailto:${siteConfig.contact.email}?subject=Jaluzele%20si%20rolete`}
-              className="border border-background/30 px-8 py-4 text-xs font-semibold uppercase tracking-[0.18em] hover:bg-background hover:text-foreground transition-colors"
+              className="border-background/30 hover:bg-background hover:text-foreground border px-8 py-4 text-xs font-semibold tracking-[0.18em] uppercase transition-colors"
             >
               Scrie-ne un email
             </a>
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

@@ -1,20 +1,25 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { siteConfig } from "@/lib/site";
+import img from "@/assets/cat-servicii.jpg";
+import designImg from "@/assets/servicii/design-interior.jpg";
+import sanitareImg from "@/assets/servicii/sanitare.jpg";
+import electriceImg from "@/assets/instalatii-electrice.webp";
+import { ResponsiveImage, type PictureSource } from "@/components/ResponsiveImage";
+import { SectionNav } from "@/components/SectionNav";
 import { absoluteUrl, breadcrumbSchema, jsonLd, serviceSchema } from "@/lib/seo";
 
 const slug = "/servicii";
 
 export const metadata: Metadata = {
-  title: "Servicii — Design Interior, Instalații Electrice și Sanitare Brașov",
+  title: { absolute: "Servicii — Design Interior, Instalații Electrice și Sanitare Brașov" },
   description:
-    "SuperDecor Brașov: design interior personalizat, instalații electrice și sanitare. Echipă calificată, tarife competitive, garanție.",
+    "SuperDecor Brașov: design interior personalizat, instalații electrice și sanitare. Echipă calificată, tarife transparente, garanție la lucrări.",
   alternates: { canonical: slug },
   openGraph: {
     title: "Servicii — SuperDecor Brașov",
-    description: "Design interior, instalații electrice și sanitare de la profesioniști.",
+    description: "Design interior, instalații electrice și sanitare de la profesioniști în Brașov.",
     url: slug,
-    images: ["/images/cat-servicii.jpg"],
+    images: [img.src],
   },
 };
 
@@ -22,7 +27,9 @@ type Service = {
   id: string;
   label: string;
   title: string;
-  paragraphs: { strong?: string; text: string }[];
+  intro: string;
+  image: PictureSource | string;
+  blocks: { heading?: string; text: string }[];
   bullets: string[];
 };
 
@@ -30,13 +37,13 @@ const services: Service[] = [
   {
     id: "design-interior",
     label: "Design Interior",
-    title: "Descoperă Opțiunile Noastre de Design Interior",
-    paragraphs: [
+    title: "Descoperă opțiunile noastre de design interior.",
+    image: designImg,
+    intro:
+      "La SuperDecor transformăm spațiile tale în refugii personale. Specializați în design interior, ne dedicăm să creăm medii care reflectă stilul tău.",
+    blocks: [
       {
-        text: "La SuperDecor, transformăm spațiile tale în refugii personale. Specializați în design interior, ne dedicăm să creăm medii care reflectă stilul tău.",
-      },
-      {
-        text: "Apelează la noi pentru soluții personalizate și o consultanță de specialitate! Creăm interioare unice și adaptate gusturilor tale, pentru a transforma fiecare cameră într-un spațiu de vis.",
+        text: "Apelează la noi pentru soluții personalizate și o consultanță de specialitate. Creăm interioare unice și adaptate gusturilor tale, pentru a transforma fiecare cameră într-un spațiu de vis.",
       },
       {
         text: "Soluțiile noastre de amenajare interioară îți vor face casa mai atrăgătoare, aducând un plus de stil, eleganță și suflet.",
@@ -52,53 +59,50 @@ const services: Service[] = [
   {
     id: "instalatii-electrice",
     label: "Instalații Electrice",
-    title: "Instalații Electrice",
-    paragraphs: [
+    title: "Instalații electrice.",
+    image: electriceImg,
+    intro:
+      "O echipă de electricieni la dispoziția ta. Oferim o gamă variată de servicii, adaptate nevoilor tale.",
+    blocks: [
       {
-        text: "O echipă de electricieni la dispoziția ta! Oferim o gamă variată de servicii, adaptate nevoilor tale:",
+        heading: "Instalații electrice noi",
+        text: "Proiectare, montaj și punere în funcțiune a instalațiilor electrice pentru locuințe, spații comerciale și hale industriale. Tarife transparente și competitive, fără costuri ascunse.",
       },
       {
-        strong: "Instalații electrice noi:",
-        text: " proiectare, montaj și punere în funcțiune a instalațiilor electrice pentru locuințe, spații comerciale și hale industriale. Oferim tarife transparente și competitive, fără costuri ascunse.",
+        heading: "Modernizare instalații",
+        text: "Înlocuirea instalațiilor vechi și neconforme, pentru a asigura siguranța și eficiența energetică. Garantăm lucrări de înaltă calitate, executate cu precizie și în conformitate cu toate normele în vigoare.",
       },
       {
-        strong: "Modernizare:",
-        text: " înlocuirea instalațiilor vechi și neconforme, pentru a asigura siguranța și eficiența energetică. Garantăm lucrări de înaltă calitate, executate cu precizie și în conformitate cu toate normele în vigoare.",
-      },
-      {
-        strong: "Mentenanță:",
-        text: " verificări periodice, proiectare, reparații și întreținere. Avem soluții pentru orice problemă electrică!",
+        heading: "Mentenanță",
+        text: "Verificări periodice ale instalațiilor electrice pentru a preveni eventualele probleme și a asigura funcționarea optimă. Proiectare, reparații și întreținere — avem soluții pentru orice problemă electrică.",
       },
     ],
     bullets: [
       "Proiectare și montaj instalații noi",
       "Modernizare și refacere circuite",
       "Verificări PRAM / PIF periodice",
-      "Certificate ISCIR și avize",
+      "Intervenții rapide 7/7",
     ],
   },
   {
     id: "instalatii-sanitare",
     label: "Instalații Sanitare",
-    title: "Instalații Sanitare",
-    paragraphs: [
+    title: "Instalații sanitare.",
+    image: sanitareImg,
+    intro:
+      "Echipa noastră de instalatori sanitari, formată din tehnicieni calificați cu o vastă experiență în domeniu, îți oferă soluții complete — de la montaj și reparații simple, până la proiecte complexe.",
+    blocks: [
       {
-        text: "Echipa noastră de instalatori sanitari, formată din tehnicieni calificați cu o vastă experiență în domeniu, îți oferă soluții complete pentru toate nevoile tale — de la montaj și reparații simple, până la proiecte complexe.",
+        heading: "Montaj și demontaj",
+        text: "Robinete, baterii, chiuvete, căzi, WC-uri. Instalații sanitare noi sau înlocuirea celor vechi. Centrale termice, boilere, calorifere. Mașini de spălat vase și rufe. Intervenim rapid la orice solicitare, iar lucrările sunt executate într-un timp scurt, fără a compromite calitatea.",
       },
       {
-        strong: "Montaj și demontaj:",
-        text: " robinete, baterii, chiuvete, căzi, WC-uri. Instalații sanitare noi sau înlocuirea celor vechi. Centrale termice, boilere, calorifere. Mașini de spălat vase și rufe.",
+        heading: "Reparații",
+        text: "Depistarea și remedierea scurgerilor de apă, desfundarea canalizării, înlocuirea țevilor, repararea obiectelor sanitare. Beneficiezi de tarife transparente și competitive, fără costuri ascunse.",
       },
       {
-        text: "Intervenim rapid la orice solicitare, iar lucrările sunt executate într-un timp scurt, fără a compromite calitatea.",
-      },
-      {
-        strong: "Reparații:",
-        text: " depistarea și remedierea scurgerilor de apă, desfundarea canalizării, înlocuirea țevilor, repararea obiectelor sanitare. Beneficiezi de tarife transparente și competitive, fără costuri ascunse.",
-      },
-      {
-        strong: "Mentenanță:",
-        text: " verificări periodice, curățarea și dezinfectarea instalațiilor, întreținerea centralelor termice.",
+        heading: "Mentenanță",
+        text: "Verificări periodice ale instalațiilor, curățarea și dezinfectarea acestora, întreținerea centralelor termice.",
       },
     ],
     bullets: [
@@ -112,7 +116,7 @@ const services: Service[] = [
 
 export default function ServiciiPage() {
   return (
-    <>
+    <div className="bg-background text-foreground">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -132,114 +136,154 @@ export default function ServiciiPage() {
             __html: jsonLd(
               serviceSchema({
                 name: s.title,
-                description: s.paragraphs.map((p) => `${p.strong ?? ""}${p.text}`).join(" "),
+                description: [
+                  s.intro,
+                  ...s.blocks.map((b) => (b.heading ? `${b.heading}: ${b.text}` : b.text)),
+                ].join(" "),
                 url: absoluteUrl(`${slug}#${s.id}`),
-                image: absoluteUrl("/images/cat-servicii.jpg"),
+                image: absoluteUrl(img.src),
               }),
             ),
           }}
         />
       ))}
 
-      <header className="relative min-h-[70vh] flex items-end">
+      {/* Hero */}
+      <header className="relative flex min-h-[70vh] items-end md:min-h-[calc(70vh-80px)]">
         <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/cat-servicii.jpg"
+          <ResponsiveImage
+            picture={img}
             alt="Servicii SuperDecor"
-            fill
-            priority
             sizes="100vw"
-            className="object-cover"
+            priority
+            pictureClassName="block w-full h-full"
+            className="h-full w-full object-cover"
           />
-          <div className="absolute inset-0 bg-primary/60" />
+          <div className="absolute inset-0 bg-[#00657E]/60" />
         </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pb-20 pt-32">
-          <span className="font-mono text-xs text-accent uppercase tracking-[0.2em] block mb-6">
-            Categorie 06
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-[19px] pt-32 pb-20 sm:px-6">
+          <span className="mb-6 block font-mono text-xs tracking-[0.2em] text-[#07BCC6] uppercase">
+            Servicii
           </span>
-          <h1 className="text-5xl md:text-7xl font-display leading-[0.95] text-background max-w-3xl text-balance">
+          <h1 className="font-display text-background max-w-3xl text-[36px] leading-[0.95] text-balance md:text-7xl">
             Servicii complete pentru casa ta.
           </h1>
+          <p className="text-background/80 mt-6 max-w-xl text-lg">
+            Design interior, instalații electrice și sanitare — echipă proprie, tarife transparente
+            și lucrări cu garanție în Brașov.
+          </p>
         </div>
       </header>
 
-      <div className="border-b border-border bg-surface sticky top-16 md:top-20 z-30">
-        <div className="max-w-7xl mx-auto px-6 py-5 flex flex-wrap gap-x-8 gap-y-2 text-[11px] font-mono uppercase tracking-[0.16em] text-muted-foreground">
-          {services.map((s) => (
-            <a key={s.id} href={`#${s.id}`} className="hover:text-primary transition-colors">
-              {s.label}
-            </a>
-          ))}
-        </div>
-      </div>
+      {/* Jump links */}
+      <SectionNav items={services.map((s) => ({ id: s.id, label: s.label }))} />
 
-      <section className="py-24 px-6">
-        <div className="max-w-7xl mx-auto space-y-32">
+      {/* Services */}
+      <section className="px-[19px] py-24 sm:px-6">
+        <div className="mx-auto max-w-7xl space-y-32">
           {services.map((s, i) => (
             <article key={s.id} id={s.id} className="scroll-mt-28">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-                <div className="lg:col-span-4">
-                  <span className="font-mono text-xs uppercase tracking-[0.2em] text-accent block mb-4">
-                    {String(i + 1).padStart(2, "0")} / {String(services.length).padStart(2, "0")}
-                  </span>
-                  <h2 className="text-3xl md:text-4xl font-display italic leading-tight text-balance">
-                    {s.title}
-                  </h2>
-                </div>
-                <div className="lg:col-span-5">
-                  <div className="text-muted-foreground leading-relaxed text-base space-y-4">
-                    {s.paragraphs.map((p, j) => (
-                      <p key={j}>
-                        {p.strong && <strong>{p.strong}</strong>}
-                        {p.text}
-                      </p>
-                    ))}
+              <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12">
+                {/* Image */}
+                <div className={`lg:col-span-5 ${i % 2 === 1 ? "lg:order-2" : ""}`}>
+                  <div className="bg-surface aspect-[4/5] overflow-hidden">
+                    <ResponsiveImage
+                      picture={s.image}
+                      alt={s.label}
+                      sizes="(max-width: 1024px) 100vw, 500px"
+                      width={typeof s.image === "string" ? 1200 : undefined}
+                      height={typeof s.image === "string" ? 1400 : undefined}
+                      pictureClassName="block w-full h-full"
+                      className="h-full w-full object-cover"
+                    />
                   </div>
                 </div>
-                <div className="lg:col-span-3">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground block mb-4">
-                    [ Ce oferim ]
+
+                {/* Text */}
+                <div className="lg:col-span-7">
+                  <span className="text-accent mb-4 block font-mono text-xs tracking-[0.2em] uppercase">
+                    {String(i + 1).padStart(2, "0")} / {String(services.length).padStart(2, "0")} —{" "}
+                    {s.label}
                   </span>
-                  <ul className="space-y-3">
-                    {s.bullets.map((b) => (
-                      <li key={b} className="flex gap-3 items-start text-sm">
-                        <span className="text-accent mt-0.5 shrink-0">+</span>
-                        <span>{b}</span>
-                      </li>
+                  <h2 className="font-display mb-6 text-[24px] leading-tight text-balance italic md:text-5xl">
+                    {s.title}
+                  </h2>
+                  <p className="text-muted-foreground mb-8 max-w-2xl text-lg leading-relaxed">
+                    {s.intro}
+                  </p>
+
+                  <div className="mb-10 grid gap-x-10 gap-y-6 md:grid-cols-2">
+                    {s.blocks.map((b, k) => (
+                      <div key={k}>
+                        {b.heading && (
+                          <h3 className="mb-2 font-mono text-[11px] tracking-[0.18em] text-[#00657E] uppercase">
+                            {b.heading}
+                          </h3>
+                        )}
+                        <p className="text-muted-foreground text-sm leading-relaxed">{b.text}</p>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
+
+                  <div className="border-border border-t pt-6">
+                    <span className="text-muted-foreground mb-4 block font-mono text-[10px] tracking-[0.2em] uppercase">
+                      [ Ce oferim ]
+                    </span>
+                    <ul className="grid gap-x-6 gap-y-2 sm:grid-cols-2">
+                      {s.bullets.map((b) => (
+                        <li key={b} className="flex items-start gap-3 text-sm">
+                          <span className="mt-0.5 shrink-0 text-[#07BCC6]">+</span>
+                          <span>{b}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </div>
-              {i < services.length - 1 && <div className="mt-32 h-px bg-border" />}
+              {i < services.length - 1 && <div className="bg-border mt-24 h-px" />}
             </article>
           ))}
         </div>
       </section>
 
-      <section className="py-24 px-6 bg-primary text-background">
-        <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-display italic mb-6 text-balance">
+      {/* Support strip */}
+      <section className="bg-surface border-border border-y px-[19px] py-16 sm:px-6">
+        <div className="mx-auto max-w-5xl text-center">
+          <span className="mb-4 block font-mono text-xs tracking-[0.2em] text-[#00657E] uppercase">
+            [ Suport clienți ]
+          </span>
+          <p className="font-display text-2xl text-balance italic md:text-3xl">
+            „Echipa noastră este aici pentru a răspunde întrebărilor tale. Întreabă-ne orice.”
+          </p>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="text-background bg-[#00657E] px-[19px] py-24 sm:px-6">
+        <div className="mx-auto max-w-5xl text-center">
+          <h2 className="font-display mb-6 text-[24px] text-balance italic md:text-5xl">
             Hai să vorbim despre proiectul tău.
           </h2>
-          <p className="text-background/80 max-w-xl mx-auto mb-10">
-            Programează o consultanță gratuită — venim cu mostre, idei și măsurători exacte.
+          <p className="text-background/80 mx-auto mb-10 max-w-xl">
+            Programează o consultanță gratuită — venim cu mostre, idei și măsurători exacte în
+            Brașov și împrejurimi.
           </p>
-          <div className="flex flex-wrap gap-4 justify-center">
+          <div className="flex flex-wrap justify-center gap-4">
             <a
-              href={`tel:${siteConfig.contact.phoneE164}`}
-              className="bg-background text-foreground px-8 py-4 text-xs font-semibold uppercase tracking-[0.18em] hover:bg-accent hover:text-background transition-colors"
+              href="tel:+40728893118"
+              className="bg-background text-foreground hover:text-background px-8 py-4 text-xs font-semibold tracking-[0.18em] uppercase transition-colors hover:bg-[#07BCC6]"
             >
               Sună acum
             </a>
             <a
               href={`mailto:${siteConfig.contact.email}?subject=Programare%20Servicii`}
-              className="border border-background/30 px-8 py-4 text-xs font-semibold uppercase tracking-[0.18em] hover:bg-background hover:text-foreground transition-colors"
+              className="border-background/30 hover:bg-background hover:text-foreground border px-8 py-4 text-xs font-semibold tracking-[0.18em] uppercase transition-colors"
             >
               Scrie-ne un email
             </a>
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

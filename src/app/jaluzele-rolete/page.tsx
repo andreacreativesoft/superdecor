@@ -10,6 +10,14 @@ import reco8 from "@/assets/jaluzele-rolete-brasov-2.webp";
 import roleteTextile from "@/assets/rolete-textile.webp";
 import roleteBlackout from "@/assets/rolete-blackout.webp";
 import proiectBrasov from "@/assets/jaluzele-proiect-brasov.webp";
+import zebra1 from "@/assets/jaluzele-zebra-1.webp";
+import zebra2 from "@/assets/jaluzele-zebra-2.webp";
+import zebra3 from "@/assets/jaluzele-zebra-3.webp";
+import zebra4 from "@/assets/jaluzele-zebra-4.webp";
+import zebra5 from "@/assets/jaluzele-zebra-5.webp";
+import zebra6 from "@/assets/jaluzele-zebra-6.webp";
+import zebra7 from "@/assets/jaluzele-zebra-7.webp";
+import zebra8 from "@/assets/jaluzele-zebra-8.webp";
 import { SectionNav } from "@/components/SectionNav";
 import { ResponsiveImage } from "@/components/ResponsiveImage";
 import { LightboxGrid } from "@/components/pages/jaluzele-rolete/LightboxGrid";
@@ -97,6 +105,9 @@ const romanaFeatures: [string, string][] = [
 ];
 
 const proiecte = [roleteTextile, reco7, verticalBlinds, proiectBrasov];
+
+const zebra = [zebra1, zebra2, zebra3, zebra4, zebra5, zebra6, zebra7, zebra8];
+const ZEBRA_SIZES = "(max-width: 1023px) 50vw, (max-width: 1328px) 25vw, 308px";
 
 const recomandari = [
   plisateImg,
@@ -198,6 +209,7 @@ export default function JaluzeleRoletePage() {
           { id: "tipuri", label: "Tipuri" },
           { id: "exterior", label: "Rulouri exterior" },
           { id: "romane", label: "Jaluzele romane" },
+          { id: "zebra", label: "Jaluzele zebra" },
           { id: "recomandari", label: "Designerii recomandă" },
           { id: "proiecte", label: "Proiecte recente" },
         ]}
@@ -351,6 +363,33 @@ export default function JaluzeleRoletePage() {
               </li>
             ))}
           </ul>
+        </div>
+      </section>
+
+      {/* ACSD - Jaluzele zebra gallery */}
+      <section id="zebra" className="border-border scroll-mt-28 border-b px-[19px] py-24 sm:px-6">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-16 flex flex-wrap items-end justify-between gap-6">
+            <div>
+              <span className="text-muted-foreground mb-4 block font-mono text-[10px] tracking-[0.2em] uppercase">
+                [ Jaluzele zebra ]
+              </span>
+              <h2 className="font-display max-w-2xl text-[24px] text-balance italic md:text-5xl">
+                Zi și noapte, în aceeași jaluzea.
+              </h2>
+            </div>
+            <p className="text-muted-foreground max-w-sm text-sm">
+              Benzi alternante de material opac și voal: le suprapui pentru intimitate sau le
+              aliniezi pentru lumină. Câteva modele montate de echipa noastră.
+            </p>
+          </div>
+          <LightboxGrid
+            images={zebra}
+            altPrefix="Jaluzele zebra montate de SuperDecor"
+            sizes={ZEBRA_SIZES}
+            gridClassName="grid grid-cols-2 lg:grid-cols-4 gap-4"
+            buttonClassName="group relative overflow-hidden bg-surface border border-border aspect-[3/4] block text-left"
+          />
         </div>
       </section>
 

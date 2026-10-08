@@ -39,7 +39,7 @@ export const siteConfig = {
     { day: ["Saturday"], opens: "10:00", closes: "14:00" },
   ],
   social: {
-    facebook: "https://www.facebook.com/superdecor.brasov",
+    facebook: "https://www.facebook.com/profile.php?id=61563018415983",
     instagram: "https://www.instagram.com/superdecor.brasov",
   },
   founder: "SuperDecor SRL",

@@ -1,12 +1,15 @@
 import type { NextConfig } from "next";
 
+// ACSD - Vercel analytics hosts only when built on Vercel
+const onVercel = Boolean(process.env.VERCEL);
+
 const ContentSecurityPolicy = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' https://va.vercel-scripts.com",
+  `script-src 'self' 'unsafe-inline'${onVercel ? " https://va.vercel-scripts.com" : ""}`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https:",
   "font-src 'self' data:",
-  "connect-src 'self' https://vitals.vercel-insights.com https://vercel.live",
+  `connect-src 'self'${onVercel ? " https://vitals.vercel-insights.com https://vercel.live" : ""}`,
   "frame-src 'self' https://www.google.com",
   "frame-ancestors 'none'",
   "base-uri 'self'",
@@ -58,7 +61,16 @@ const nextConfig: NextConfig = {
     ];
   },
   async redirects() {
-    return legacyRedirects;
+    return [
+      // ACSD - one canonical host: www -> apex
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.superdecor.ro" }],
+        destination: "https://superdecor.ro/:path*",
+        permanent: true,
+      },
+      ...legacyRedirects,
+    ];
   },
 };
 

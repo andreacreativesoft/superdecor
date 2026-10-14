@@ -108,7 +108,8 @@ const tipuri: {
     tag: "Zi & noapte",
     desc: "Benzi alternante de material opac și voal: le suprapui pentru intimitate sau le aliniezi pentru lumină. Se montează pe cadrul ferestrei sau deasupra golului.",
     img: zebra2,
-    photos: zebra,
+    photos: [zebra2, zebra1, zebra3, zebra4, zebra5, zebra6, zebra7, zebra8],
+    slider: true,
   },
   {
     name: "Rolete casetate & necasetate",

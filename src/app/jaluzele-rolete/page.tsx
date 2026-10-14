@@ -21,11 +21,14 @@ import zebra8 from "@/assets/jaluzele-zebra-8.webp";
 import plisate1 from "@/assets/jaluzele-plisate-1.webp";
 import plisate2 from "@/assets/jaluzele-plisate-2.webp";
 import aluminiu1 from "@/assets/jaluzele-aluminiu-1.webp";
+import aluminiuCulori from "@/assets/jaluzele-aluminiu-culori.webp";
+import plisate3 from "@/assets/jaluzele-plisate-3.webp";
 import { SectionNav } from "@/components/SectionNav";
 import { ResponsiveImage } from "@/components/ResponsiveImage";
 import { LightboxGrid } from "@/components/pages/jaluzele-rolete/LightboxGrid";
 import type { PictureSource } from "@/components/ResponsiveImage";
 import { TypeCardPhotos } from "@/components/pages/jaluzele-rolete/TypeCardPhotos";
+import { CardSlider } from "@/components/pages/jaluzele-rolete/CardSlider";
 import { absoluteUrl, breadcrumbSchema, faqSchema, jsonLd, serviceSchema } from "@/lib/seo";
 
 const slug = "/jaluzele-rolete";
@@ -55,8 +58,8 @@ export const metadata: Metadata = {
 };
 
 const zebra = [zebra1, zebra2, zebra3, zebra4, zebra5, zebra6, zebra7, zebra8];
-const plisate = [plisate1, plisate2];
-const aluminiu = [aluminiu1];
+const plisate = [plisate1, plisate2, plisate3];
+const aluminiu = [aluminiu1, aluminiuCulori];
 
 const tipuri: {
   name: string;
@@ -64,6 +67,7 @@ const tipuri: {
   desc: string;
   img: PictureSource;
   photos?: PictureSource[];
+  slider?: boolean;
 }[] = [
   {
     name: "Rolete textile",
@@ -88,7 +92,8 @@ const tipuri: {
     tag: "Ferestre atipice",
     desc: "Sistem compact, perfect pentru ferestre atipice — mansardă, formă triunghiulară sau trapezoidală. Estetică modernă, discretă, care se pliază perfect pe cadrul ferestrei.",
     img: plisate2,
-    photos: plisate,
+    photos: [plisate2, plisate1, plisate3],
+    slider: true,
   },
   {
     name: "Jaluzele aluminiu",
@@ -96,6 +101,7 @@ const tipuri: {
     desc: "Lamele subțiri din aluminiu care se rotesc ca să dirijezi lumina după nevoie. Rezistă la umezeală și se curăță ușor — potrivite pentru bucătărie, baie sau birou.",
     img: aluminiu1,
     photos: aluminiu,
+    slider: true,
   },
   {
     name: "Jaluzele zebra",
@@ -298,15 +304,19 @@ export default function JaluzeleRoletePage() {
                 key={t.name}
                 className="group bg-background border-border hover:shadow-foreground/5 overflow-hidden border transition-shadow hover:shadow-2xl"
               >
-                <div className="bg-surface aspect-[4/5] overflow-hidden">
-                  <ResponsiveImage
-                    picture={t.img}
-                    alt={t.name}
-                    sizes={CARD_SIZES}
-                    pictureClassName="block w-full h-full"
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                </div>
+                {t.slider && t.photos ? (
+                  <CardSlider images={t.photos} alt={t.name} sizes={CARD_SIZES} />
+                ) : (
+                  <div className="bg-surface aspect-[4/5] overflow-hidden">
+                    <ResponsiveImage
+                      picture={t.img}
+                      alt={t.name}
+                      sizes={CARD_SIZES}
+                      pictureClassName="block w-full h-full"
+                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </div>
+                )}
                 <div className="p-6">
                   <div className="mb-3 flex items-baseline justify-between">
                     <span className="font-mono text-[10px] tracking-[0.2em] text-[#07BCC6] uppercase">
@@ -320,7 +330,7 @@ export default function JaluzeleRoletePage() {
                     {t.name}
                   </h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">{t.desc}</p>
-                  {t.photos ? <TypeCardPhotos images={t.photos} alt={t.name} /> : null}
+                  {t.photos && !t.slider ? <TypeCardPhotos images={t.photos} alt={t.name} /> : null}
                 </div>
               </article>
             ))}

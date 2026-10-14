@@ -18,9 +18,14 @@ import zebra5 from "@/assets/jaluzele-zebra-5.webp";
 import zebra6 from "@/assets/jaluzele-zebra-6.webp";
 import zebra7 from "@/assets/jaluzele-zebra-7.webp";
 import zebra8 from "@/assets/jaluzele-zebra-8.webp";
+import plisate1 from "@/assets/jaluzele-plisate-1.webp";
+import plisate2 from "@/assets/jaluzele-plisate-2.webp";
+import aluminiu1 from "@/assets/jaluzele-aluminiu-1.webp";
 import { SectionNav } from "@/components/SectionNav";
 import { ResponsiveImage } from "@/components/ResponsiveImage";
 import { LightboxGrid } from "@/components/pages/jaluzele-rolete/LightboxGrid";
+import type { PictureSource } from "@/components/ResponsiveImage";
+import { TypeCardPhotos } from "@/components/pages/jaluzele-rolete/TypeCardPhotos";
 import { absoluteUrl, breadcrumbSchema, faqSchema, jsonLd, serviceSchema } from "@/lib/seo";
 
 const slug = "/jaluzele-rolete";
@@ -49,7 +54,17 @@ export const metadata: Metadata = {
   },
 };
 
-const tipuri = [
+const zebra = [zebra1, zebra2, zebra3, zebra4, zebra5, zebra6, zebra7, zebra8];
+const plisate = [plisate1, plisate2];
+const aluminiu = [aluminiu1];
+
+const tipuri: {
+  name: string;
+  tag: string;
+  desc: string;
+  img: PictureSource;
+  photos?: PictureSource[];
+}[] = [
   {
     name: "Rolete textile",
     tag: "Sistem",
@@ -72,7 +87,22 @@ const tipuri = [
     name: "Jaluzele plisate",
     tag: "Ferestre atipice",
     desc: "Sistem compact, perfect pentru ferestre atipice — mansardă, formă triunghiulară sau trapezoidală. Estetică modernă, discretă, care se pliază perfect pe cadrul ferestrei.",
-    img: plisateImg,
+    img: plisate2,
+    photos: plisate,
+  },
+  {
+    name: "Jaluzele aluminiu",
+    tag: "Rezistente",
+    desc: "Lamele subțiri din aluminiu care se rotesc ca să dirijezi lumina după nevoie. Rezistă la umezeală și se curăță ușor — potrivite pentru bucătărie, baie sau birou.",
+    img: aluminiu1,
+    photos: aluminiu,
+  },
+  {
+    name: "Jaluzele zebra",
+    tag: "Zi & noapte",
+    desc: "Benzi alternante de material opac și voal: le suprapui pentru intimitate sau le aliniezi pentru lumină. Se montează pe cadrul ferestrei sau deasupra golului.",
+    img: zebra2,
+    photos: zebra,
   },
   {
     name: "Rolete casetate & necasetate",
@@ -105,9 +135,6 @@ const romanaFeatures: [string, string][] = [
 ];
 
 const proiecte = [roleteTextile, reco7, verticalBlinds, proiectBrasov];
-
-const zebra = [zebra1, zebra2, zebra3, zebra4, zebra5, zebra6, zebra7, zebra8];
-const ZEBRA_SIZES = "(max-width: 1023px) 50vw, (max-width: 1328px) 25vw, 308px";
 
 const recomandari = [
   plisateImg,
@@ -209,7 +236,6 @@ export default function JaluzeleRoletePage() {
           { id: "tipuri", label: "Tipuri" },
           { id: "exterior", label: "Rulouri exterior" },
           { id: "romane", label: "Jaluzele romane" },
-          { id: "zebra", label: "Jaluzele zebra" },
           { id: "recomandari", label: "Designerii recomandă" },
           { id: "proiecte", label: "Proiecte recente" },
         ]}
@@ -294,6 +320,7 @@ export default function JaluzeleRoletePage() {
                     {t.name}
                   </h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">{t.desc}</p>
+                  {t.photos ? <TypeCardPhotos images={t.photos} alt={t.name} /> : null}
                 </div>
               </article>
             ))}
@@ -363,33 +390,6 @@ export default function JaluzeleRoletePage() {
               </li>
             ))}
           </ul>
-        </div>
-      </section>
-
-      {/* ACSD - Jaluzele zebra gallery */}
-      <section id="zebra" className="border-border scroll-mt-28 border-b px-[19px] py-24 sm:px-6">
-        <div className="mx-auto max-w-7xl">
-          <div className="mb-16 flex flex-wrap items-end justify-between gap-6">
-            <div>
-              <span className="text-muted-foreground mb-4 block font-mono text-[10px] tracking-[0.2em] uppercase">
-                [ Jaluzele zebra ]
-              </span>
-              <h2 className="font-display max-w-2xl text-[24px] text-balance italic md:text-5xl">
-                Zi și noapte, în aceeași jaluzea.
-              </h2>
-            </div>
-            <p className="text-muted-foreground max-w-sm text-sm">
-              Benzi alternante de material opac și voal: le suprapui pentru intimitate sau le
-              aliniezi pentru lumină. Câteva modele montate de echipa noastră.
-            </p>
-          </div>
-          <LightboxGrid
-            images={zebra}
-            altPrefix="Jaluzele zebra montate de SuperDecor"
-            sizes={ZEBRA_SIZES}
-            gridClassName="grid grid-cols-2 lg:grid-cols-4 gap-4"
-            buttonClassName="group relative overflow-hidden bg-surface border border-border aspect-[3/4] block text-left"
-          />
         </div>
       </section>
 

@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SuperDecor
 
-## Getting Started
+Site oficial al **SuperDecor Brașov** — perdele, draperii, sine și galerii, jaluzele, rolete, lenjerii de pat și mobilă la comandă.
 
-First, run the development server:
+🌐 **Producție:** [superdecor.ro](https://superdecor.ro)
+
+## Stack
+
+- Next.js 16 (App Router) · React 19 · TypeScript strict
+- Tailwind CSS v4 · shadcn/ui (Nova preset) · Radix · Lucide
+- MDX pentru conținut
+- Vercel Analytics + Speed Insights
+- Deploy automat pe Vercel
+
+## Rulare locală
 
 ```bash
+nvm use            # Node 22 (vezi .nvmrc)
+npm install
+cp .env.example .env.local   # opțional, pentru variabile custom
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Apoi deschide [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripturi
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Comandă | Ce face |
+| --- | --- |
+| `npm run dev` | Server de dezvoltare |
+| `npm run build` | Build de producție |
+| `npm run start` | Server de producție (după build) |
+| `npm run lint` | Linting Next.js |
+| `npm run format` | Prettier + Tailwind plugin |
 
-## Learn More
+## Context pentru contributori
 
-To learn more about Next.js, take a look at the following resources:
+Mai multe detalii despre arhitectură, convenții, cum se adaugă pagini și produse — vezi [`CLAUDE.md`](./CLAUDE.md).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Licență
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+© SuperDecor SRL — toate drepturile rezervate.
